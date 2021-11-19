@@ -8,7 +8,7 @@ const FormInputLogin = () => {
             width:'100%',
             justifyContent:'center',
             alignItems:'center',
-            marginTop:150
+            marginTop:200
         }, 
         headingInput:{
             color:'white',
@@ -30,7 +30,7 @@ const FormInputLogin = () => {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.headingInput}>IDENTIFIER-VOUS</Text>{/*Titre du formulaire*/}
+            <Text style={styles.headingInput}>IDENTIFIEZ-VOUS</Text>{/*Titre du formulaire*/}
 
             <TextInput style={styles.input} placeholder='Identifiant'/>{/*Input de l'identifiant client*/}
             <TextInput style={styles.input} placeholder='Mot de passe'/>{/*Input de mot de passe*/}

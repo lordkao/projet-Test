@@ -4,6 +4,7 @@ import LoginImage from '../../assets/login-page.png';
 import FormButtonsLogin from './FormButtonsLogin';
 import FormInputLogin from './FormInputLogin';
 import FooterList from './FooterList';
+import HeaderLogin from './HeaderLogin';
 
 const LoginPage = () => {
 
@@ -30,10 +31,11 @@ const LoginPage = () => {
     voile:{
       position:'absolute',
       zIndex: 2,
-      top: '98%',
+      top: '100%',
       height:'100%',
       width:'100%',
-      backgroundColor:'black',
+      backgroundColor:'#000629',
+      
     },
     
   })
@@ -44,6 +46,8 @@ const LoginPage = () => {
         source={LoginImage}
         style={styles.imageBackground}
       >
+
+        <HeaderLogin/>
         
         <FormInputLogin/>{/*Inputs de connexion*/}
 

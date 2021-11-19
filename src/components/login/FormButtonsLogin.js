@@ -26,7 +26,7 @@ const FormButtonsLogin = () => {
             padding:10,
             borderRadius:5,
             alignItems:'center',
-            width:'80%',
+            width:'75%',
         }
     })
 
