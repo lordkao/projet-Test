@@ -23,11 +23,10 @@ const LoginPage = () => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <ImageBackground
-          source={LoginImage}
-          resizeMode='cover'
-          style={styles.imageBackground}
+        <View style={styles.scrollViewContainer}
         >{/*Image de fond*/}
+
+          <Image source={LoginImage} resizeMode='contain' style={styles.image}/>
 
           <View style={styles.header}>
             <HeaderLogin/>{/*En-tête de la page de connexion*/}
@@ -49,7 +48,7 @@ const LoginPage = () => {
 
           <View style={styles.tintPage}/>
 
-        </ImageBackground>
+        </View>
       </ScrollView>
     </View>
   );
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
     position:'relative',
     zIndex:0,
   },  
-  imageBackground:{
+  scrollViewContainer:{
     flex:1,
     zIndex:1,
     backgroundColor:'black',
@@ -106,4 +105,9 @@ const styles = StyleSheet.create({
   scrollView:{
     backgroundColor:'red'
   },
+  image:{
+    position:'absolute',
+    flex:1,
+    zIndex: 1,
+  }
 })

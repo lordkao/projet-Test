@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
-        marginTop:'65%',
+        marginTop:'95%',
        /*backgroundColor:'yellow'*/
     }, 
     headingInput:{
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     input:{
     fontSize:16,
-    marginTop:10,
+    marginTop:20,
     backgroundColor:'white',
     width:'75%',
     textAlign:'center',
