@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },  
   scrollViewContainer:{
     flex:1,
-    zIndex:2,
+    zIndex:1,
     backgroundColor:'black',
     justifyContent:'flex-start',
     alignItems:'center',
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   tintPage:{
     position:'absolute',
-    zIndex: 10,
+    zIndex: 1,
     height:'100%',
     width:'100%',
     backgroundColor:'#000629',/*#000629*/
