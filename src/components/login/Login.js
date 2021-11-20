@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Text, ImageBackground, Image, View, StyleSheet, ScrollView } from 'react-native';
-import LoginImage from '../../assets/login-page.png';
+import { Text, Image, View, StyleSheet, ScrollView } from 'react-native';
 import FormButtonsLogin from './FormButtonsLogin';
 import FormInputLogin from './FormInputLogin';
 import FooterList from './FooterList';
 import HeaderLogin from './HeaderLogin';
+import LoginImage from '../../assets/login-page.png';
+import LinearGradient from 'react-native-linear-gradient';
 
 const LoginPage = () => {
+
+  const [userName,setUserName] = useState('')
+  const [password,setPassword] = useState('')
 
   const[connected,setConnected] = useState(false)
   const [responseRequest,setResponseRequest] = useState('')/*Variable d'état qui va contenir la clé JWT*/
@@ -19,37 +23,62 @@ const LoginPage = () => {
     console.log('JWT ==> '+responseRequest)
   },[responseRequest])
 
+  useEffect(() => {/*Envoi dans la console l'identifiant*/
+    console.log('Voici le username renseigné par l\'utilisateur : '+userName)
+  },[userName])
+
+  useEffect(() => {/*Envoi dans la console le password renseigné*/
+      console.log('Voici le mot de passe renseigné : '+password)
+  },[password])
+
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <ImageBackground
-          source={LoginImage}
-          resizeMode='cover'
-          style={styles.imageBackground}
-        >{/*Image de fond*/}
+        <View style={styles.scrollViewContainer}
+        >
+          {/*Dégradé de couleur bleu*/}
+          <LinearGradient colors={['transparent', '#000629']} style={styles.linearGradient}/>
 
+          {/*Teinte qui fonce l'image en background*/}
+          <View style={styles.tintPage}/>
+
+          {/*Image de fond*/}
+          <Image source={LoginImage} resizeMode='contain' style={styles.image}/>
+
+          {/*En-tête de la page de connexion*/}
           <View style={styles.header}>
-            <HeaderLogin/>{/*En-tête de la page de connexion*/}
+            <HeaderLogin/>
           </View>
           
           <View style={styles.formContainer}>
-            <FormInputLogin/>{/*Inputs de connexion*/}
 
-            <Text style={styles.forgetPass}>J'ai oublié mon mot de passe</Text>{/*lien pour récupérer un mot de passe*/}
+            {/*Inputs de connexion*/}
+            <FormInputLogin
+              userName={userName}
+              setUserName={setUserName}
+              password={password}
+              setPassword={setPassword}
+            />
 
+            {/*lien pour récupérer un mot de passe*/}
+            <Text style={styles.forgetPass}>J'ai oublié mon mot de passe</Text>
+
+            {/*Boutons de connexion*/}
             <FormButtonsLogin 
               setResponseRequest={setResponseRequest}
               connected={connected}
               setConnected={setConnected}
-            />{/*Boutons de connexion*/}
+              userName={userName}
+              password={password}
+            />
 
-            <FooterList/>{/*Liste des liens de règlementations*/}
+            {/*Liste des liens de règlementations*/}
+            <FooterList/>
+            
           </View>
 
-          <View style={styles.tintPage}/>
-
-        </ImageBackground>
+        </View>
       </ScrollView>
     </View>
   );
@@ -63,7 +92,7 @@ const styles = StyleSheet.create({
     position:'relative',
     zIndex:0,
   },  
-  imageBackground:{
+  scrollViewContainer:{
     flex:1,
     zIndex:1,
     backgroundColor:'black',
@@ -95,15 +124,33 @@ const styles = StyleSheet.create({
     width:'100%',
     /*backgroundColor:'blue'*/
   },
+  scrollView:{
+    backgroundColor:'red'
+  },
+  backgroundLogin:{
+    position:'absolute',
+    zIndex:1,
+    width:'100%',
+  },
   tintPage:{
     position:'absolute',
-    zIndex: 2,
+    zIndex: 1,
     height:'100%',
     width:'100%',
     backgroundColor:'#000629',/*#000629*/
     opacity:0.2
   },
-  scrollView:{
-    backgroundColor:'red'
+  image:{
+    position:'absolute',
+    flex:1,
+    zIndex: 1,
+  },
+  linearGradient: {
+    position:'absolute',
+    flex:1,
+    zIndex: 2,
+    bottom:0,
+    height:'50%',
+    width:'100%',
   },
 })

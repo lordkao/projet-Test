@@ -1,14 +1,27 @@
-import React from "react";
+import React from 'react';
 import { Text, TextInput, View, StyleSheet } from 'react-native';
 
-const FormInputLogin = () => {
+const FormInputLogin = ({userName,setUserName,password,setPassword}) => {
 
     return(
         <View style={styles.container}>
             <Text style={styles.headingInput}>IDENTIFIEZ-VOUS</Text>{/*Titre du formulaire*/}
 
-            <TextInput style={styles.input} placeholder='Identifiant'/>{/*Input de l'identifiant client*/}
-            <TextInput style={styles.input} placeholder='Mot de passe'/>{/*Input de mot de passe*/}
+            {/*Input de l'identifiant client*/}
+            <TextInput 
+                style={styles.input} 
+                placeholder='Identifiant'
+                onChangeText={setUserName}
+                value={userName}
+            />
+            
+            {/*Input de mot de passe*/}
+            <TextInput 
+                style={styles.input} 
+                placeholder='Mot de passe'
+                onChangeText={setPassword}
+                value={password}
+            />
         </View>
     )
 }
@@ -21,7 +34,7 @@ const styles = StyleSheet.create({
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
-        marginTop:'65%',
+        marginTop:'95%',
        /*backgroundColor:'yellow'*/
     }, 
     headingInput:{
@@ -31,7 +44,7 @@ const styles = StyleSheet.create({
     },
     input:{
     fontSize:16,
-    marginTop:10,
+    marginTop:20,
     backgroundColor:'white',
     width:'75%',
     textAlign:'center',
