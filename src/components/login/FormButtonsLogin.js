@@ -27,14 +27,15 @@ const FormButtonsLogin = ({setResponseRequest,setConnected,userName,password}) =
             fetch(urlConnect,requestParams)
             .then( res => res.ok&& res.json())
             .then(responses => {
-            const test = responses
-            if(test.token){
-                setResponseRequest('BEARER '+test.token)
+            const result = responses
+            if(result.token){
+                setResponseRequest('BEARER '+result.token)
                 setConnected(true)
-                alert('test.token vaut ==> '+test.token)
+                alert('test.token vaut ==> '+result.token)
             }
             else{
                 alert('Mauvaise informations saisies !!')
+                setConnected(false)
             }})
             .catch(err => alert('erreur : ' + err))
         }
