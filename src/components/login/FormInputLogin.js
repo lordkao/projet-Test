@@ -26,6 +26,7 @@ const FormInputLogin = ({
                 placeholder='Mot de passe'
                 onChangeText={setPassword}
                 value={password}
+                secureTextEntry={true}
             />
         </View>
     )
