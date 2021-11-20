@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, ImageBackground, Image, View, StyleSheet } from 'react-native';
+import { Text, ImageBackground, Image, View, StyleSheet, ScrollView } from 'react-native';
 import LoginImage from '../../assets/login-page.png';
 import FormButtonsLogin from './FormButtonsLogin';
 import FormInputLogin from './FormInputLogin';
@@ -22,28 +22,32 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={LoginImage}
-        style={styles.imageBackground}
-      >{/*Image de fond*/}
+      <ScrollView>
+        <ImageBackground
+          source={LoginImage}
+          style={styles.imageBackground}
+        >{/*Image de fond*/}
 
-        <HeaderLogin/>{/*En-tête de la page de connexion*/}
-        
-        <FormInputLogin/>{/*Inputs de connexion*/}
+          <HeaderLogin/>{/*En-tête de la page de connexion*/}
+          
+          <View style={styles.formContainer}>
+            <FormInputLogin/>{/*Inputs de connexion*/}
 
-        <Text style={styles.forgetPass}>J'ai oublié mon mot de passe</Text>{/*lien pour récupérer un mot de passe*/}
+            <Text style={styles.forgetPass}>J'ai oublié mon mot de passe</Text>{/*lien pour récupérer un mot de passe*/}
 
-        <FormButtonsLogin 
-          setResponseRequest={setResponseRequest}
-          connected={connected}
-          setConnected={setConnected}
-        />{/*Boutons de connexion*/}
+            <FormButtonsLogin 
+              setResponseRequest={setResponseRequest}
+              connected={connected}
+              setConnected={setConnected}
+            />{/*Boutons de connexion*/}
 
-        <FooterList/>{/*Liste des liens de règlementations*/}
+            <FooterList/>{/*Liste des liens de règlementations*/}
+          </View>
 
-        <View style={styles.tintPage}/>
+            <View style={styles.tintPage}/>
 
-      </ImageBackground>
+        </ImageBackground>
+      </ScrollView>
     </View>
   );
 }
@@ -61,8 +65,13 @@ const styles = StyleSheet.create({
     height:'110%',
     width:'100%',
     backgroundColor:'black',
-    justifyContent:'center',
+    justifyContent:'space-between',
     alignItems:'center',
+  },
+  formContainer:{
+    width:'100%',
+    justifyContent:'center',
+    alignItems:'center'
   },
   forgetPass:{
     zIndex:5,

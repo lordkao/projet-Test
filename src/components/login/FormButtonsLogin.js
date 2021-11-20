@@ -3,34 +3,6 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 const FormButtonsLogin = ({setResponseRequest,connected,setConnected}) => {
 
-    const styles= StyleSheet.create({
-        container:{
-            zIndex:5,
-            width:'100%',
-            justifyContent:'center',
-            alignItems:'center',
-        },
-        textBtn:{
-            color:'white',
-            fontSize:16,
-            fontWeight:'bold',
-            letterSpacing:0.5,
-        },
-        btnConnect:{
-            backgroundColor:'red'
-        },
-        btnSignup:{
-            backgroundColor:'#5e78b3'
-        },
-        btn:{
-            marginTop:25,
-            padding:10,
-            borderRadius:5,
-            alignItems:'center',
-            width:'75%',
-        }
-    })
-
     const urlConnect = 'https://api-r.ulteamapp.fr/api/login_check'
 
     const infos = {/*Objet qui devra être joint au body de la requête POST*/
@@ -86,3 +58,31 @@ const FormButtonsLogin = ({setResponseRequest,connected,setConnected}) => {
 }
 
 export default FormButtonsLogin;
+
+const styles= StyleSheet.create({
+    container:{
+        zIndex:5,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    textBtn:{
+        color:'white',
+        fontSize:16,
+        fontWeight:'bold',
+        letterSpacing:0.5,
+    },
+    btnConnect:{
+        backgroundColor:'red'
+    },
+    btnSignup:{
+        backgroundColor:'#5e78b3'
+    },
+    btn:{
+        marginTop:25,
+        padding:10,
+        borderRadius:5,
+        alignItems:'center',
+        width:'75%',
+    }
+})
