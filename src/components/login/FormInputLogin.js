@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
-        marginTop:250
+        marginTop:'65%',
+       /*backgroundColor:'yellow'*/
     }, 
     headingInput:{
         color:'white',

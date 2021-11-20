@@ -22,13 +22,16 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
         <ImageBackground
           source={LoginImage}
+          resizeMode='cover'
           style={styles.imageBackground}
         >{/*Image de fond*/}
 
-          <HeaderLogin/>{/*En-tête de la page de connexion*/}
+          <View style={styles.header}>
+            <HeaderLogin/>{/*En-tête de la page de connexion*/}
+          </View>
           
           <View style={styles.formContainer}>
             <FormInputLogin/>{/*Inputs de connexion*/}
@@ -44,7 +47,7 @@ const LoginPage = () => {
             <FooterList/>{/*Liste des liens de règlementations*/}
           </View>
 
-            <View style={styles.tintPage}/>
+          <View style={styles.tintPage}/>
 
         </ImageBackground>
       </ScrollView>
@@ -61,24 +64,36 @@ const styles = StyleSheet.create({
     zIndex:0,
   },  
   imageBackground:{
+    flex:1,
     zIndex:1,
-    height:'110%',
-    width:'100%',
     backgroundColor:'black',
-    justifyContent:'space-between',
+    justifyContent:'flex-start',
+    alignItems:'center',
+  },
+  header:{
+    height:120,
+    width:'100%',
+    justifyContent:'center',
     alignItems:'center',
   },
   formContainer:{
+    height:'80%',
     width:'100%',
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent:'flex-end',
+    alignItems:'center',
+    /*backgroundColor:'purple'*/
   },
   forgetPass:{
     zIndex:5,
-    marginTop:15,
+    marginTop:10,
+    marginBottom:15,
     fontSize:14,
     color:'white',
     textDecorationLine:'underline',
+    textAlign:'center',
+    textAlignVertical:'center',
+    width:'100%',
+    /*backgroundColor:'blue'*/
   },
   tintPage:{
     position:'absolute',
@@ -87,5 +102,8 @@ const styles = StyleSheet.create({
     width:'100%',
     backgroundColor:'#000629',/*#000629*/
     opacity:0.2
+  },
+  scrollView:{
+    backgroundColor:'red'
   },
 })

@@ -18,7 +18,5 @@ export default UlteamProject;
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    position:'relative',
-    zIndex:0,
   },  
 })

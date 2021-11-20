@@ -20,18 +20,17 @@ export default HeaderLogin;
 
 const styles = StyleSheet.create({
     headerContainer:{
+        width:'100%',
         zIndex:5,
-        position:'absolute',
-        top:5,
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'flex-end',
+        /*backgroundColor:'red',*/
     },
     headingTitle:{
         height:30,
         justifyContent:'center',
         alignItems:'center',
         color:'white',
-        marginTop:0,
         fontSize: 26,
         fontWeight: '900',
         letterSpacing:0.2

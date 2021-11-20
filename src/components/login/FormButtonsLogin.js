@@ -65,22 +65,23 @@ const styles= StyleSheet.create({
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
+        /*backgroundColor:'green'*/
     },
     textBtn:{
         color:'white',
         fontSize:16,
         fontWeight:'bold',
-        letterSpacing:0.5,
+        letterSpacing:0.7,
     },
     btnConnect:{
         backgroundColor:'red'
     },
     btnSignup:{
+        marginTop:20,
         backgroundColor:'#5e78b3'
     },
     btn:{
-        marginTop:25,
-        padding:10,
+        padding:12,
         borderRadius:5,
         alignItems:'center',
         width:'75%',
