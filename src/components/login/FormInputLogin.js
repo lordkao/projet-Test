@@ -5,6 +5,7 @@ const FormInputLogin = () => {
 
     const styles = StyleSheet.create({
         container:{
+            zIndex:5,
             width:'100%',
             justifyContent:'center',
             alignItems:'center',

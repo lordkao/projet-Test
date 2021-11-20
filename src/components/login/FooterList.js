@@ -7,12 +7,14 @@ const FooterList = () => {
 
     const styles= StyleSheet.create({
         container:{
+            zIndex:5,
             width:'100%',
+            marginTop:30,
             justifyContent:'center',
             alignItems:'center',
         },
         link:{
-            marginTop:15,
+            marginTop:5,
             color:'white',
             textDecorationLine:'underline',
             textAlign:'center'

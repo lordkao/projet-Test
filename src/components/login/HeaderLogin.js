@@ -5,10 +5,11 @@ import Logo from '../../assets/ulteamtv.png'
 const HeaderLogin = () => {
 
     const headingTitle = 'Plateforme Vidéo'
-    const headingQuote = 'Sport,bien-être & prévention santé'
+    const headingQuote = 'Sport, bien-être & prévention santé'
 
     const styles = StyleSheet.create({
         headerContainer:{
+            zIndex:5,
             position:'absolute',
             top:20,
             alignItems:'center',
@@ -19,10 +20,12 @@ const HeaderLogin = () => {
             marginTop:5,
             fontSize: 26,
             fontWeight: '900',
+            letterSpacing:0.2
         },
         headingQuote:{
             color:'white',
-            fontSize:16
+            fontSize:16,
+            letterSpacing:0.2
         }
     })
     
