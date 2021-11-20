@@ -6,7 +6,8 @@ const FormButtonsLogin = ({
     setConnected,
     userName,
     password,
-    setShowLogin
+    setShowLogin,
+    setShowHomePage
 }) => {
 
     const urlConnect = 'https://api-r.ulteamapp.fr/api/login_check'
@@ -38,7 +39,8 @@ const FormButtonsLogin = ({
                 setResponseRequest('BEARER '+result.token)
                 setConnected(true)
                 setShowLogin(false)
-                alert('test.token vaut ==> '+result.token)
+                setShowHomePage(true)
+                alert('Bonne réception du JWT afin de poursuivre votre navigation')
             }
             else{
                 alert('Mauvaise informations saisies !!')

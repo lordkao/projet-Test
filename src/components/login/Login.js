@@ -14,7 +14,8 @@ const LoginPage = ({
   setUserName,
   password,
   setPassword,
-  setShowLogin
+  setShowLogin,
+  setShowHomePage
 }) => {
 
   return (
@@ -56,6 +57,7 @@ const LoginPage = ({
               userName={userName}
               password={password}
               setShowLogin={setShowLogin}
+              setShowHomePage={setShowHomePage}
             />
 
             {/*Liste des liens de règlementations*/}
