@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Text, Image, View, StyleSheet, ScrollView } from 'react-native';
 import FormButtonsLogin from './FormButtonsLogin';
 import FormInputLogin from './FormInputLogin';
@@ -7,30 +7,15 @@ import HeaderLogin from './HeaderLogin';
 import LoginImage from '../../assets/login-page.png';
 import LinearGradient from 'react-native-linear-gradient';
 
-const LoginPage = () => {
-
-  const [userName,setUserName] = useState('')
-  const [password,setPassword] = useState('')
-
-  const[connected,setConnected] = useState(false)
-  const [responseRequest,setResponseRequest] = useState('')/*Variable d'état qui va contenir la clé JWT*/
-
-  useEffect(() => {/*Indique la valeur Booléenne de "connected" à chaque changement de celui-ci*/
-    console.log('connected Value ==> '+connected)
-  },[connected])
-
-  useEffect(() => {/*Envoi dans la console le JWT reçu à chaque setting de "responseRequest"*/
-    console.log('JWT ==> '+responseRequest)
-  },[responseRequest])
-
-  useEffect(() => {/*Envoi dans la console l'identifiant*/
-    console.log('Voici le username renseigné par l\'utilisateur : '+userName)
-  },[userName])
-
-  useEffect(() => {/*Envoi dans la console le password renseigné*/
-      console.log('Voici le mot de passe renseigné : '+password)
-  },[password])
-
+const LoginPage = ({
+  setResponseRequest,
+  setConnected,
+  userName,
+  setUserName,
+  password,
+  setPassword,
+  setShowLogin
+}) => {
 
   return (
     <View style={styles.container}>
@@ -67,10 +52,10 @@ const LoginPage = () => {
             {/*Boutons de connexion*/}
             <FormButtonsLogin 
               setResponseRequest={setResponseRequest}
-              connected={connected}
               setConnected={setConnected}
               userName={userName}
               password={password}
+              setShowLogin={setShowLogin}
             />
 
             {/*Liste des liens de règlementations*/}

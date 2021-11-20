@@ -1,7 +1,13 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-const FormButtonsLogin = ({setResponseRequest,setConnected,userName,password}) => {
+const FormButtonsLogin = ({
+    setResponseRequest,
+    setConnected,
+    userName,
+    password,
+    setShowLogin
+}) => {
 
     const urlConnect = 'https://api-r.ulteamapp.fr/api/login_check'
 
@@ -31,6 +37,7 @@ const FormButtonsLogin = ({setResponseRequest,setConnected,userName,password}) =
             if(result.token){
                 setResponseRequest('BEARER '+result.token)
                 setConnected(true)
+                setShowLogin(false)
                 alert('test.token vaut ==> '+result.token)
             }
             else{

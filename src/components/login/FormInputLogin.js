@@ -1,7 +1,12 @@
 import React from 'react';
 import { Text, TextInput, View, StyleSheet } from 'react-native';
 
-const FormInputLogin = ({userName,setUserName,password,setPassword}) => {
+const FormInputLogin = ({
+    userName,
+    setUserName,
+    password,
+    setPassword
+}) => {
 
     return(
         <View style={styles.container}>
