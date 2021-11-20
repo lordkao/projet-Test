@@ -5,20 +5,6 @@ const FooterList = () => {
 
     const arrayLinks = ['Mentions légales','Politiques de confidentialité','Conditions générales']
 
-    const styles= StyleSheet.create({
-        container:{
-            width:'100%',
-            justifyContent:'center',
-            alignItems:'center',
-        },
-        link:{
-            marginTop:15,
-            color:'white',
-            textDecorationLine:'underline',
-            textAlign:'center'
-        }
-    })
-
     return(
         <View style={styles.container}>
             {arrayLinks.map( (link,index) =>
@@ -29,3 +15,21 @@ const FooterList = () => {
 }
 
 export default FooterList;
+
+const styles= StyleSheet.create({
+    container:{
+        zIndex:5,
+        width:'100%',
+        marginTop:30,
+        marginBottom:0,
+        justifyContent:'center',
+        alignItems:'center',
+        /*backgroundColor:'brown'*/
+    },
+    link:{
+        marginTop:5,
+        color:'white',
+        textDecorationLine:'underline',
+        textAlign:'center'
+    }
+})
