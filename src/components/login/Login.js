@@ -9,6 +9,9 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const LoginPage = () => {
 
+  const [userName,setUserName] = useState('')
+  const [password,setPassword] = useState('')
+
   const[connected,setConnected] = useState(false)
   const [responseRequest,setResponseRequest] = useState('')/*Variable d'état qui va contenir la clé JWT*/
 
@@ -19,6 +22,14 @@ const LoginPage = () => {
   useEffect(() => {/*Envoi dans la console le JWT reçu à chaque setting de "responseRequest"*/
     console.log('JWT ==> '+responseRequest)
   },[responseRequest])
+
+  useEffect(() => {/*Envoi dans la console l'identifiant*/
+    console.log('Voici le username renseigné par l\'utilisateur : '+userName)
+  },[userName])
+
+  useEffect(() => {/*Envoi dans la console le password renseigné*/
+      console.log('Voici le mot de passe renseigné : '+password)
+  },[password])
 
 
   return (
@@ -43,7 +54,12 @@ const LoginPage = () => {
           <View style={styles.formContainer}>
 
             {/*Inputs de connexion*/}
-            <FormInputLogin/>
+            <FormInputLogin
+              userName={userName}
+              setUserName={setUserName}
+              password={password}
+              setPassword={setPassword}
+            />
 
             {/*lien pour récupérer un mot de passe*/}
             <Text style={styles.forgetPass}>J'ai oublié mon mot de passe</Text>
@@ -53,6 +69,8 @@ const LoginPage = () => {
               setResponseRequest={setResponseRequest}
               connected={connected}
               setConnected={setConnected}
+              userName={userName}
+              password={password}
             />
 
             {/*Liste des liens de règlementations*/}

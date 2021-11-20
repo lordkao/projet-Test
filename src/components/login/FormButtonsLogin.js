@@ -1,16 +1,16 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-const FormButtonsLogin = ({setResponseRequest,connected,setConnected}) => {
+const FormButtonsLogin = ({setResponseRequest,setConnected,userName,password}) => {
 
     const urlConnect = 'https://api-r.ulteamapp.fr/api/login_check'
 
-    const infos = {/*Objet qui devra être joint au body de la requête POST*/
-        username : 'sonny-dev',
-        password : 'Ozon-1234'
+    const infosUser = {/*Objet qui devra être joint au body de la requête POST*/
+        username : userName,
+        password : password
     }
 
-    function sendUserInputs(){
+    function sendUserInputs(infos){
 
         const requestParams = {/*Paramètre de requête POST pour l'envoi des infos de connexion*/
         method:'POST',
@@ -42,15 +42,18 @@ const FormButtonsLogin = ({setResponseRequest,connected,setConnected}) => {
 
     return(
         <View style={styles.container}>
+
+            {/*Bouton de connexion*/}
             <TouchableOpacity 
                 style={[styles.btnConnect,styles.btn]} 
                 activeOpacity={0.5}
-                onPress={() => sendUserInputs()}
-            >{/*Bouton de connexion*/}
+                onPress={() => sendUserInputs(infosUser)}
+            >
                 <Text style={styles.textBtn}>Connexion</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.btnSignup,styles.btn]} activeOpacity={0.5}>{/*Bouton d'inscription*/}
+            {/*Bouton d'inscription*/}
+            <TouchableOpacity style={[styles.btnSignup,styles.btn]} activeOpacity={0.5}>
                 <Text style={styles.textBtn}>Première connexion ?</Text>
             </TouchableOpacity>
         </View>
