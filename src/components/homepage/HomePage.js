@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, Image, View, StyleSheet, ScrollView } from 'react-native';
-import HeadingMenu from './HeadingMenu';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import FixedMenu from './fixedMenu/FixedMenu';
 
 const HomePage = () => {
     return(
@@ -8,7 +8,7 @@ const HomePage = () => {
 
             {/*Menu de navigation*/}
             <View style={[styles.fixedMenu]}>
-                <HeadingMenu/>
+                <FixedMenu/>
             </View>
             {/*Contenu principale de la homePage*/}
             <ScrollView style={styles.scrollView}>

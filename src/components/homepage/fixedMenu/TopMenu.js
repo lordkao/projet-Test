@@ -1,9 +1,9 @@
 import React from "react";
 import { Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-import Menu from '../../assets/home/menu.png';
-import Search from '../../assets/home/search.png'
-import Logo from '../../assets/ulteamtv.png'
+import Menu from '../../../assets/home/menu.png';
+import Search from '../../../assets/home/search.png'
+import Logo from '../../../assets/ulteamtv.png'
 
 const TopMenu = () => {
     return(
