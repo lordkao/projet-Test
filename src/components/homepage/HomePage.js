@@ -1,10 +1,23 @@
 import React,{ useState } from 'react';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Home from './accueil/Home';
 import FixedMenu from './fixedMenu/FixedMenu';
 
 const HomePage = () => {
 
     const [activeTab,setActiveTab] = useState(0)/*Variable d'état qui définit quel page afficher*/
+
+    function switchTab(value){/*Fonction qui affiche la page selon l'onglet sélectionné*/
+        if(value === 0){
+            return <Home/>
+        }
+        else if(value === 1){
+            return null
+        }
+        else if(value === 2){
+            return <Home/>
+        }
+    }
 
     return(
         <View style={[styles.homePage]}>
@@ -16,58 +29,11 @@ const HomePage = () => {
                     setActiveTab={setActiveTab}
                 />
             </View>
-            {/*Contenu principale de la homePage*/}
-            <ScrollView style={styles.scrollView}>
-
-                {/*Header de la homePage*/}
-                <View style={[styles.headerHomePage]}>
-                    <Text style={[styles.headerHomePageContainer]}>
-                        Présentation des chaînes !!
-                    </Text>
-                </View>
-
-                {/*Nouveautés de la homePage*/}
-                <View style={[styles.newsHomePage]}>
-                    <Text style={[styles.newsHomePageContainer]}>
-                        Nouveautés !!
-                    </Text>
-                </View>
-
-                {/*Découverte des chaînes de la homePage*/}
-                <View style={[styles.newsHomePage]}>
-                    <Text style={[styles.newsHomePageContainer]}>
-                        Découvrez nos catégories !!
-                    </Text>
-                </View>
-
-                {/*Boutons favoris et reprendre*/}
-                <View style={[styles.newsHomePage]}>
-                    <Text style={[styles.newsHomePageContainer]}>
-                        Boutons favoris et reprendre !!
-                    </Text>
-                </View>
-                {/*Section bien-être en moins de 15min*/}
-                <View style={[styles.newsHomePage]}>
-                    <Text style={[styles.newsHomePageContainer]}>
-                        Votre bien-être en moins de 15min !!
-                    </Text>
-                </View>
-
-                {/*Découverte du programme santé*/}
-                <View style={[styles.newsHomePage]}>
-                    <Text style={[styles.newsHomePageContainer]}>
-                        Découvrez nos programmes santé
-                    </Text>
-                </View>
-
-                {/*Découverte des chaînes*/}
-                <View style={[styles.newsHomePage]}>
-                    <Text style={[styles.newsHomePageContainer]}>
-                        Découvrez nos chaînes
-                    </Text>
-                </View>
-
-            </ScrollView>
+            
+            {/*Contenu principale affiché*/
+                switchTab(activeTab)
+            }
+            
 
         </View>
     )
