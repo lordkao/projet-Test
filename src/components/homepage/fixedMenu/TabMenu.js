@@ -34,7 +34,7 @@ const TabMenu = ({activeTab,setActiveTab}) => {
                             onPress={()=> { setActiveTab(index)}} 
                             activeOpacity={0.7}
                         >
-                            
+
                             <Image 
                                 style={
                                     activeTab === index?/*Rajout de la classe 'opacite' selon activeTab*/
@@ -109,7 +109,7 @@ const styles= StyleSheet.create({
     btnValue:{
         opacity:0.3,
         color:'white',
-        fontSize:18
+        fontSize:14
     },
     opacity:{
         opacity:1,
