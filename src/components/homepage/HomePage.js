@@ -60,42 +60,4 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
-    scrollView:{
-        backgroundColor:'orange',
-        width:'100%'
-    },
-    headerHomePage:{
-        backgroundColor:'green',
-        height:180,
-        marginTop:120,
-        width:'100%',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    headerHomePageContainer:{
-        flex:1,
-        width:'90%',
-        backgroundColor:'blue',
-        color:'white',
-        fontSize:20,
-        textAlign:'center',
-        textAlignVertical:'center'
-    },
-    newsHomePage:{
-        backgroundColor:'green',
-        height:180,
-        marginTop:10,
-        width:'100%',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    newsHomePageContainer:{
-        flex:1,
-        width:'90%',
-        backgroundColor:'brown',
-        color:'white',
-        fontSize:20,
-        textAlign:'center',
-        textAlignVertical:'center'
-    },
 })

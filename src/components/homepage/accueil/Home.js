@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import HeaderHome from "./HeaderHome";
 
 const Home = () => {
     return(
@@ -7,9 +8,7 @@ const Home = () => {
 
             {/*Header de la homePage*/}
             <View style={[styles.headerHomePage]}>
-                <Text style={[styles.headerHomePageContainer]}>
-                    Présentation des chaînes !!
-                </Text>
+                <HeaderHome/>
             </View>
 
             {/*Nouveautés de la homePage*/}
@@ -61,25 +60,16 @@ export default Home;
 
 const styles = StyleSheet.create({
     scrollView:{
-        backgroundColor:'orange',
-        width:'100%'
+        backgroundColor:'#000629',
+        width:'100%',
+        marginTop:120,
     },
     headerHomePage:{
-        backgroundColor:'green',
-        height:180,
-        marginTop:120,
+        height:220,
         width:'100%',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    headerHomePageContainer:{
-        flex:1,
-        width:'90%',
-        backgroundColor:'blue',
-        color:'white',
-        fontSize:20,
-        textAlign:'center',
-        textAlignVertical:'center'
+        marginTop:20,
+        paddingHorizontal:10,
+        paddingBottom:20,
     },
     newsHomePage:{
         backgroundColor:'green',
