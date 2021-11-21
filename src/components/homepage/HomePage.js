@@ -1,14 +1,20 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import FixedMenu from './fixedMenu/FixedMenu';
 
 const HomePage = () => {
+
+    const [activeTab,setActiveTab] = useState(0)/*Variable d'état qui définit quel page afficher*/
+
     return(
         <View style={[styles.homePage]}>
 
             {/*Menu de navigation*/}
             <View style={[styles.fixedMenu]}>
-                <FixedMenu/>
+                <FixedMenu
+                    activeTab={activeTab}
+                    setActiveTab={setActiveTab}
+                />
             </View>
             {/*Contenu principale de la homePage*/}
             <ScrollView style={styles.scrollView}>
