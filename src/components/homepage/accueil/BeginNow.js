@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
         marginBottom:15
     },
     title:{
+        zIndex:5,
         width:'85%',
         fontSize:22,
         fontWeight:'bold',
@@ -121,6 +122,7 @@ const styles = StyleSheet.create({
         marginLeft:20
     },
     description:{
+        zIndex:5,
         width:'85%',
         color:'white',
         textAlign:'left',

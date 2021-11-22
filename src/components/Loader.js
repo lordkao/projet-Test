@@ -14,7 +14,10 @@ export default Loader;
 
 const styles = StyleSheet.create({
     imageContainer:{
-        flex:1
+        flex:1,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center'
     },
     loader:{
         height:60,
