@@ -9,6 +9,7 @@ const HomePage = ({jwt}) => {
     const [isLoading,setIsLoading] = useState(true)/*Variable qui gère l'affichage du composant*/
     const [dataCategories,setDataCategories] = useState([])/*Contient un array des catégories*/
     const [dataChannels,setDataChannels] = useState([])/*Contient un array des chaînes*/
+    const [dataPrograms,setDataPrograms] = useState([])/*Contient un array des programmes*/
 
     const url='https://api-r.ulteamapp.fr/api/custom/menu'/*url des catégories*/
     const paramsGet = {/*paramètres de requête pour obtenir les categories, chaînes et programmes*/
@@ -23,7 +24,7 @@ const HomePage = ({jwt}) => {
       fetch(url,paramsGet)
       .then((res) => res.ok&& res.json())
       .then((response) => {
-        if(response.categories){
+        if(response.categories && response.channels && response.programs){
           setDataCategories([
             response.categories[3],
             response.categories[4],
@@ -36,13 +37,18 @@ const HomePage = ({jwt}) => {
             response.channels[5],
             response.channels[6],
           ])
-          setIsLoading(false)/*Set la variable isLoading à false*/
+          setDataPrograms([
+            response.programs[106],
+            response.programs[102],
+            response.programs[98],
+          ])
         }
         else{
           alert('Les données ne sont pas arrivées !!')
         }
       })
       .catch((err) => alert('La requête s\'est mal déroulée' + err))
+      .finally(() => setIsLoading(false)/*Set la variable isLoading à false*/)
   },[jwt])
 
     function switchTab(value){/*Fonction qui affiche la page selon l'onglet sélectionné*/
@@ -52,6 +58,8 @@ const HomePage = ({jwt}) => {
                     jwt={jwt}
                     isLoading={isLoading}
                     dataCategories={dataCategories}
+                    dataChannels={dataChannels}
+                    dataPrograms={dataPrograms}
                 />
             )
         }
@@ -64,6 +72,8 @@ const HomePage = ({jwt}) => {
                     jwt={jwt}
                     isLoading={isLoading}
                     dataCategories={dataCategories}
+                    dataChannels={dataChannels}
+                    dataPrograms={dataPrograms}
                 />
             )
         }

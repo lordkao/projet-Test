@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Loader from '../../../assets/loader.png';
+import Loader from "../../Loader";
 
 const DiscoverCategories = ({isLoading,dataCategories}) => {
 
@@ -9,26 +9,28 @@ const DiscoverCategories = ({isLoading,dataCategories}) => {
         <View style={styles.discoverContainer}>
             {
                 isLoading?
-                    <View style={styles.imageContainer}><Image resizeMode='contain' style={styles.loader} source={Loader}/></View>
+                        /*Logo de chargement en attente de recevoir les données*/
+                        <Loader/>
                     :
-                    dataCategories.map((category,index)=>{
-                        return(
-                            <View key={category.id+'-'+index} style={styles.discoverFrame}>
-                                <TouchableOpacity
-                                    style={styles.btnCategory}
-                                    activeOpacity={0.7}
-                                >
-                                    <Image 
-                                        source={{uri:category.illustrationUrl}} 
-                                        style={styles.imageContainer}
-                                    />
-                                    <Text style={styles.title}>
-                                        {category.name}
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        )
-                    }) /**/
+                        /*Boucle dans dataCategories pour créer un bouton de chaque categorie*/
+                        dataCategories.map((category,index)=>{
+                            return(
+                                <View key={category.id+'-'+index} style={styles.discoverFrame}>
+                                    <TouchableOpacity
+                                        style={styles.btnCategory}
+                                        activeOpacity={0.7}
+                                    >
+                                        <Image 
+                                            source={{uri:category.illustrationUrl}} 
+                                            style={styles.imageContainer}
+                                        />
+                                        <Text style={styles.title}>
+                                            {category.name}
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            )
+                        })
             }
         </View>
     )
@@ -45,18 +47,6 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
-    },
-    loader:{
-        height:60,
-        width:'100%',
-        transform:[
-            {rotate:'90deg'},
-        ],
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    imageContainer:{
-        flex:1
     },
     btnCategory:{
         flex:1,

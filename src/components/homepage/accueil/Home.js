@@ -3,10 +3,11 @@ import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import BeginNow from "./BeginNow";
 import ButtonsHome from "./ButtonsHome";
 import DiscoverCategories from "./DiscoverCategories";
+import DiscoverHealth from "./DiscoverHealth";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
 
-const Home = ({jwt,isLoading,dataCategories}) => {
+const Home = ({jwt,isLoading,dataCategories,dataChannels,dataPrograms}) => {
     return(
         <ScrollView style={styles.scrollView}>
 
@@ -33,7 +34,7 @@ const Home = ({jwt,isLoading,dataCategories}) => {
             <View style={[styles.buttons]}>
                 <ButtonsHome/>
             </View>
-            {/*Section bien-être en moins de 15min*/}
+            {/*Section bien-être en moins de 15min OK*/}
             <View style={[styles.beginNow]}>
                 <BeginNow
                     jwt={jwt}
@@ -41,10 +42,11 @@ const Home = ({jwt,isLoading,dataCategories}) => {
             </View>
 
             {/*Découverte du programme santé*/}
-            <View style={[styles.newsHomePage]}>
-                <Text style={[styles.newsHomePageContainer]}>
-                    Découvrez nos programmes santé
-                </Text>
+            <View style={[styles.discoverHealth]}>
+                <DiscoverHealth 
+                    dataPrograms={dataPrograms}
+                    isLoading={isLoading}
+                />
             </View>
 
             {/*Découverte des chaînes*/}
@@ -112,10 +114,15 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     beginNow:{
-        width:30,
         marginTop:20,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
     },
+    discoverHealth:{
+        height:500,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center',
+    }
 })
