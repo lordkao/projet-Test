@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     beginNow:{
-        width:30,
         marginTop:20,
         width:'100%',
         justifyContent:'center',

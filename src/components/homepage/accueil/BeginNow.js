@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import Redplay from '../../../assets/home/redplay.png';
+import Loader from "../../Loader";
 
 const BeginNow= ({jwt}) => {
 
@@ -42,28 +43,31 @@ const BeginNow= ({jwt}) => {
     return(
         <View style={styles.beginContainer}>
 
+            {/*Titre du composant*/}
             <Text style={styles.headingTitle}>{headingTitle}</Text>
 
-            {
-                dataBegin.map( (lesson,index)=>{
+            {   
+                isLoading?
+                    /*Logo de chargement en attente de recevoir les données*/
+                    <Loader/>
+                :
+                    /*Boucle dans dataBegin pour créer un boutton à chaque itération*/
+                    dataBegin.map( (lesson,index)=>{
+                        return (
+                            <TouchableOpacity key={lesson.name+index} activeOpacity={0.7} style={styles.btnBegin}>
+                                <Image style={styles.imageBackground} source={{uri:lesson.image.contentUrl}}/>
+                                <Image 
+                                    style={styles.redPlay}
+                                    source={Redplay}
+                                />
+                                <Text style={styles.title}>{lesson.name}</Text>{/*Titre*/}
+                                <Text style={styles.description}>{lesson.content}</Text>{/*Description*/}
 
-                    return (
-
-                        <TouchableOpacity key={lesson.name+index} activeOpacity={0.7} style={styles.btnBegin}>
-                            <Image style={styles.imageBackground} source={{uri:lesson.image.contentUrl}}/>
-                            <Image 
-                                style={styles.redPlay}
-                                source={Redplay}
-                            />
-                            <Text style={styles.title}>{lesson.name}</Text>{/*Titre*/}
-                            <Text style={styles.description}>{lesson.content}</Text>{/*Description*/}
-
-                        </TouchableOpacity>
-                        
-                    )
-                })
+                            </TouchableOpacity>
+                        )
+                    })
             }
-
+            {/*Bouton pour voir tous les ateliers*/}
             <TouchableOpacity style={styles.btnShowAll} activeOpacity={0.7}>
                 <Text style={styles.btnTextShowAll}>
                     Voir tout
