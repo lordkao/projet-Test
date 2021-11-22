@@ -6,6 +6,7 @@ const BeginNow= ({jwt}) => {
 
 
     const[dataBegin,setDataBegin] = useState([])
+    const[isLoading,setIsLoading] = useState(true)
 
     const paramsGetBegin = {
         method:'GET',
@@ -20,17 +21,28 @@ const BeginNow= ({jwt}) => {
         fetch(urlBegin,paramsGetBegin)
         .then(res => res.ok&& res.json())
         .then(response =>{
-            setDataBegin([...response['hydra:member']])
+
+            setDataBegin([
+                response['hydra:member'][1],
+                response['hydra:member'][2],
+                response['hydra:member'][3],
+                response['hydra:member'][4],
+                response['hydra:member'][5],
+                response['hydra:member'][6],
+                response['hydra:member'][7],
+            ])    
+            setIsLoading(false)
+            
         })
         .catch( err => alert(err))
     },[jwt])
 
-    useEffect(()=>{
-        console.log(dataBegin[4].image.contentUrl)
-    },[dataBegin])
-    
+    const headingTitle = 'votre bien-être en moins de 15mn'.toUpperCase()
+
     return(
         <View style={styles.beginContainer}>
+
+            <Text style={styles.headingTitle}>{headingTitle}</Text>
 
             {
                 dataBegin.map( (lesson,index)=>{
@@ -38,7 +50,7 @@ const BeginNow= ({jwt}) => {
                     return (
 
                         <TouchableOpacity
-                            key={lesson.id+index}
+                            key={lesson.name+index}
                             activeOpacity={0.7}
                             style={styles.btnBegin}
                         >
@@ -69,6 +81,7 @@ const styles = StyleSheet.create({
     beginContainer:{
         flex:1,
         width:'100%',
+        paddingHorizontal:10
     },
     btnBegin:{
         position:'relative',
@@ -88,6 +101,13 @@ const styles = StyleSheet.create({
         opacity:0.4,
         height:'100%',
         width:'100%',
+    },
+    headingTitle:{
+        color:'white',
+        fontSize:20,
+        fontWeight:'800',
+        textAlign:'center',
+        marginBottom:15
     },
     title:{
         width:'85%',
