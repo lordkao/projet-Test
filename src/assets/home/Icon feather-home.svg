@@ -1,8 +1,0 @@
-<svg id="Icon_feather-home" data-name="Icon feather-home" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 12.289 13.564">
-  <g id="Tracé_71" data-name="Tracé 71" transform="translate(0 0)">
-    <path id="Tracé_127" data-name="Tracé 127" d="M686.06,389.234h-8.925a1.684,1.684,0,0,1-1.682-1.682v-7.012a.408.408,0,0,1,.157-.322l5.737-4.462a.408.408,0,0,1,.5,0l5.737,4.462a.408.408,0,0,1,.157.322v7.012A1.684,1.684,0,0,1,686.06,389.234Zm-9.793-8.495v6.813a.869.869,0,0,0,.868.868h8.925a.869.869,0,0,0,.868-.868v-6.813l-5.33-4.146Z" transform="translate(-675.453 -375.67)" fill="#fff"/>
-  </g>
-  <g id="Tracé_72" data-name="Tracé 72" transform="translate(3.825 6.375)">
-    <path id="Tracé_128" data-name="Tracé 128" d="M684.385,390.689a.407.407,0,0,1-.407-.407v-5.968h-3.012v5.968a.407.407,0,1,1-.814,0v-6.375a.407.407,0,0,1,.407-.407h3.827a.407.407,0,0,1,.407.407v6.375A.407.407,0,0,1,684.385,390.689Z" transform="translate(-680.151 -383.5)" fill="#fff"/>
-  </g>
-</svg>

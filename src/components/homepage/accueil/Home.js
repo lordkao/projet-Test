@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import HeaderHome from "./HeaderHome";
+import News from "./News";
 
 const Home = () => {
     return(
@@ -12,10 +13,8 @@ const Home = () => {
             </View>
 
             {/*Nouveautés de la homePage*/}
-            <View style={[styles.newsHomePage]}>
-                <Text style={[styles.newsHomePageContainer]}>
-                    Nouveautés !!
-                </Text>
+            <View style={[styles.news]}>
+                <News/>
             </View>
 
             {/*Découverte des chaînes de la homePage*/}
@@ -70,6 +69,13 @@ const styles = StyleSheet.create({
         marginTop:20,
         paddingHorizontal:10,
         paddingBottom:20,
+    },
+    news:{
+        height:220,
+        marginTop:10,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center'
     },
     newsHomePage:{
         backgroundColor:'green',

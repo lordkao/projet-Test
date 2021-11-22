@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, ScrollView, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import ProgramsImage from '../../../assets/home/programs.png';
 import ChannelsImage from '../../../assets/home/channels.png';
 import RedPlayIcon from '../../../assets/home/redplay.png';
@@ -7,7 +7,7 @@ import RedPlayIcon from '../../../assets/home/redplay.png';
 const HeaderHome = () => {
     return(
         <View style={styles.headerHome}>
-
+            {/*Bouton 'Nos Programmes'*/}
             <TouchableOpacity 
             style={styles.button}
             activeOpacity={0.7}
@@ -22,6 +22,7 @@ const HeaderHome = () => {
                 />
             </TouchableOpacity>
 
+            {/*Bouton 'Nos Chaînes'*/}
             <TouchableOpacity 
             style={styles.button}
             activeOpacity={0.7}
