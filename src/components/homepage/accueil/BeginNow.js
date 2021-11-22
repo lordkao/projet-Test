@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import Redplay from '../../../assets/home/redplay.png';
 
 const BeginNow= ({jwt}) => {
@@ -49,15 +49,8 @@ const BeginNow= ({jwt}) => {
 
                     return (
 
-                        <TouchableOpacity
-                            key={lesson.name+index}
-                            activeOpacity={0.7}
-                            style={styles.btnBegin}
-                        >
-                            <Image 
-                                style={styles.imageBackground}
-                                source={{uri:lesson.image.contentUrl}}
-                            />
+                        <TouchableOpacity key={lesson.name+index} activeOpacity={0.7} style={styles.btnBegin}>
+                            <Image style={styles.imageBackground} source={{uri:lesson.image.contentUrl}}/>
                             <Image 
                                 style={styles.redPlay}
                                 source={Redplay}
@@ -70,6 +63,12 @@ const BeginNow= ({jwt}) => {
                     )
                 })
             }
+
+            <TouchableOpacity style={styles.btnShowAll} activeOpacity={0.7}>
+                <Text style={styles.btnTextShowAll}>
+                    Voir tout
+                </Text>
+            </TouchableOpacity>
 
         </View>
     )
@@ -92,13 +91,13 @@ const styles = StyleSheet.create({
         borderRadius:15,
         overflow:'hidden',
         marginVertical:5,
-        justifyContent:'flex-start',
+        justifyContent:'center',
         alignItems:'flex-start'
     },
     imageBackground:{
         position:'absolute',
         zIndex:1,
-        opacity:0.4,
+        opacity:0.5,
         height:'100%',
         width:'100%',
     },
@@ -130,5 +129,20 @@ const styles = StyleSheet.create({
         right:10,
         height:70,
         width:50,
+    },
+    btnShowAll:{
+        backgroundColor:'red',
+        justifyContent:'center',
+        alignItems:'center',
+        paddingVertical:10,
+        borderRadius:8,
+        marginHorizontal:10,
+        marginVertical:15
+    },
+    btnTextShowAll:{
+        color:'white',
+        fontWeight:'900',
+        letterSpacing:0.5,
+        fontSize:14
     }
 })

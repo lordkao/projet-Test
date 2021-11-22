@@ -33,7 +33,7 @@ const Home = ({jwt,isLoading,dataCategories}) => {
             <View style={[styles.buttons]}>
                 <ButtonsHome/>
             </View>
-            {/*Section bien-être en moins de 15min*/}
+            {/*Section bien-être en moins de 15min OK*/}
             <View style={[styles.beginNow]}>
                 <BeginNow
                     jwt={jwt}

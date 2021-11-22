@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import HomePage from './src/components/homepage/HomePage';
 import LoginPage from './src/components/login/Login';
 
@@ -33,6 +33,12 @@ const UlteamProject = () => {
 
   return (
     <View style={styles.container}>
+      {/*Bar de statut du smartphone*/}
+      <StatusBar
+        backgroundColor='black'
+        barStyle='light-content'
+        translucent={false}
+      />
 
       {showLogin&& /*Affichage de la page de connexion si showLogin est TRUE*/
         <LoginPage
