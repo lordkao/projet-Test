@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 const FormButtonsLogin = ({
-    setResponseRequest,
+    setJsonWebToken,
     setConnected,
     userName,
     password,
@@ -36,7 +36,7 @@ const FormButtonsLogin = ({
             .then(responses => {
             const result = responses
             if(result.token){
-                setResponseRequest('BEARER '+result.token)
+                setJsonWebToken('BEARER '+result.token)
                 setConnected(true)
                 setShowLogin(false)
                 setShowHomePage(true)

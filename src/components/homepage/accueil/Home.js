@@ -1,40 +1,43 @@
 import React from "react";
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import BeginNow from "./BeginNow";
+import ButtonsHome from "./ButtonsHome";
+import DiscoverCategories from "./DiscoverCategories";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
 
-const Home = () => {
+const Home = ({jwt,isLoading,dataCategories}) => {
     return(
         <ScrollView style={styles.scrollView}>
 
-            {/*Header de la homePage*/}
+            {/*Header de la homePage OK*/}
             <View style={[styles.headerHomePage]}>
                 <HeaderHome/>
             </View>
 
-            {/*Nouveautés de la homePage*/}
+            {/*Nouveautés de la homePage OK*/}
             <View style={[styles.news]}>
                 <News/>
             </View>
 
-            {/*Découverte des chaînes de la homePage*/}
-            <View style={[styles.newsHomePage]}>
-                <Text style={[styles.newsHomePageContainer]}>
-                    Découvrez nos catégories !!
-                </Text>
+            {/*Découverte des chaînes de la homePage OK*/}
+            <View style={[styles.discoverCategories]}>
+                <DiscoverCategories
+                    jwt={jwt}
+                    isLoading={isLoading}
+                    dataCategories={dataCategories}
+                />
             </View>
 
-            {/*Boutons favoris et reprendre*/}
-            <View style={[styles.newsHomePage]}>
-                <Text style={[styles.newsHomePageContainer]}>
-                    Boutons favoris et reprendre !!
-                </Text>
+            {/*Boutons favoris et reprendre OK*/}
+            <View style={[styles.buttons]}>
+                <ButtonsHome/>
             </View>
             {/*Section bien-être en moins de 15min*/}
-            <View style={[styles.newsHomePage]}>
-                <Text style={[styles.newsHomePageContainer]}>
-                    Votre bien-être en moins de 15min !!
-                </Text>
+            <View style={[styles.beginNow]}>
+                <BeginNow
+                    jwt={jwt}
+                />
             </View>
 
             {/*Découverte du programme santé*/}
@@ -93,5 +96,26 @@ const styles = StyleSheet.create({
         fontSize:20,
         textAlign:'center',
         textAlignVertical:'center'
+    },
+    discoverCategories:{
+        height:380,
+        marginTop:20,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    buttons:{
+        height:120,
+        marginTop:20,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    beginNow:{
+        width:30,
+        marginTop:20,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center',
     },
 })
