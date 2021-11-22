@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Text, View, StyleSheet, FlatList, Image, Dimensions, TouchableOpacity } from 'react-native';
+import React from "react";
+import { Text, View, StyleSheet, Image } from 'react-native';
 import Polygone from '../../../assets/home/polygone.png';
 import News1 from '../../../assets/home/news1.png';
 import News2 from '../../../assets/home/news2.png';

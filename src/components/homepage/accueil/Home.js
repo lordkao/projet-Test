@@ -1,27 +1,28 @@
 import React from "react";
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import DiscoverCategories from "./DiscoverCategories";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
 
-const Home = () => {
+const Home = ({jwt}) => {
     return(
         <ScrollView style={styles.scrollView}>
 
-            {/*Header de la homePage*/}
+            {/*Header de la homePage OK*/}
             <View style={[styles.headerHomePage]}>
                 <HeaderHome/>
             </View>
 
-            {/*Nouveautés de la homePage*/}
+            {/*Nouveautés de la homePage OK*/}
             <View style={[styles.news]}>
                 <News/>
             </View>
 
             {/*Découverte des chaînes de la homePage*/}
-            <View style={[styles.newsHomePage]}>
-                <Text style={[styles.newsHomePageContainer]}>
-                    Découvrez nos catégories !!
-                </Text>
+            <View style={[styles.discoverCategories]}>
+                <DiscoverCategories
+                    jwt={jwt}
+                />
             </View>
 
             {/*Boutons favoris et reprendre*/}
@@ -94,4 +95,11 @@ const styles = StyleSheet.create({
         textAlign:'center',
         textAlignVertical:'center'
     },
+    discoverCategories:{
+        height:380,
+        marginTop:20,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center'
+    }
 })

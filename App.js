@@ -11,7 +11,7 @@ const UlteamProject = () => {
   const [userName,setUserName] = useState('')/*Variable d'état qui va contenir l'identifiant'*/
   const [password,setPassword] = useState('')/*Variable d'état qui va contenir le mot de passe*/
   const[connected,setConnected] = useState(false)/*Variable d'état qui définit l'état de connexion*/
-  const [responseRequest,setResponseRequest] = useState('')/*Variable d'état qui va contenir la clé JWT*/
+  const [jsonWebToken,setJsonWebToken] = useState('')/*Variable d'état qui va contenir la clé JWT*/
 
   /*Tous les useEffect pour vérification*/
   useEffect(() => {/*Indique la valeur Booléenne de "connected" à chaque changement de celui-ci*/
@@ -19,8 +19,8 @@ const UlteamProject = () => {
   },[connected])
 
   useEffect(() => {/*Envoi dans la console le JWT reçu à chaque setting de "responseRequest"*/
-    console.log('JWT ==> '+responseRequest)
-  },[responseRequest])
+    console.log('JWT ==> '+jsonWebToken)
+  },[jsonWebToken])
 
   useEffect(() => {/*Envoi dans la console l'identifiant*/
     console.log('Voici le username renseigné par l\'utilisateur : '+userName)
@@ -35,8 +35,8 @@ const UlteamProject = () => {
 
       {showLogin&& /*Affichage de la page de connexion si showLogin est TRUE*/
         <LoginPage
-        responseRequest={responseRequest}
-        setResponseRequest={setResponseRequest}
+        jsonWebToken={jsonWebToken}
+        setJsonWebToken={setJsonWebToken}
         connected={connected}
         setConnected={setConnected}
         userName={userName}
@@ -48,7 +48,9 @@ const UlteamProject = () => {
       />
       }
       {showHomePage&& /*Affichage de la page d'accueil' si showHomePage est TRUE*/
-        <HomePage/>
+        <HomePage
+          jwt={jsonWebToken}
+        />
       }
 
     </View>

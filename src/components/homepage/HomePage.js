@@ -3,19 +3,27 @@ import { View, StyleSheet } from 'react-native';
 import Home from './accueil/Home';
 import FixedMenu from './fixedMenu/FixedMenu';
 
-const HomePage = () => {
+const HomePage = ({jwt}) => {
 
     const [activeTab,setActiveTab] = useState(0)/*Variable d'état qui définit quel page afficher*/
 
     function switchTab(value){/*Fonction qui affiche la page selon l'onglet sélectionné*/
         if(value === 0){
-            return <Home/>
+            return (
+                <Home 
+                    jwt={jwt}
+                />
+            )
         }
         else if(value === 1){
             return null
         }
         else if(value === 2){
-            return <Home/>
+            return (
+                <Home 
+                    jwt={jwt}
+                />
+            )
         }
     }
 

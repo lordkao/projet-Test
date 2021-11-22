@@ -8,7 +8,7 @@ import LoginImage from '../../assets/login-page.png';
 import LinearGradient from 'react-native-linear-gradient';
 
 const LoginPage = ({
-  setResponseRequest,
+  setJsonWebToken,
   setConnected,
   userName,
   setUserName,
@@ -52,7 +52,7 @@ const LoginPage = ({
 
             {/*Boutons de connexion*/}
             <FormButtonsLogin 
-              setResponseRequest={setResponseRequest}
+              setJsonWebToken={setJsonWebToken}
               setConnected={setConnected}
               userName={userName}
               password={password}
