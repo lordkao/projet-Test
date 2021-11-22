@@ -4,7 +4,7 @@ import DiscoverCategories from "./DiscoverCategories";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
 
-const Home = ({jwt}) => {
+const Home = ({jwt,isLoading,dataCategories}) => {
     return(
         <ScrollView style={styles.scrollView}>
 
@@ -22,6 +22,8 @@ const Home = ({jwt}) => {
             <View style={[styles.discoverCategories]}>
                 <DiscoverCategories
                     jwt={jwt}
+                    isLoading={isLoading}
+                    dataCategories={dataCategories}
                 />
             </View>
 

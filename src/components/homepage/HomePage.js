@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import Home from './accueil/Home';
 import FixedMenu from './fixedMenu/FixedMenu';
 
-const HomePage = ({jwt}) => {
+const HomePage = ({jwt,isLoading,dataCategories}) => {
 
     const [activeTab,setActiveTab] = useState(0)/*Variable d'état qui définit quel page afficher*/
 
@@ -12,6 +12,8 @@ const HomePage = ({jwt}) => {
             return (
                 <Home 
                     jwt={jwt}
+                    isLoading={isLoading}
+                    dataCategories={dataCategories}
                 />
             )
         }
@@ -22,6 +24,8 @@ const HomePage = ({jwt}) => {
             return (
                 <Home 
                     jwt={jwt}
+                    isLoading={isLoading}
+                    dataCategories={dataCategories}
                 />
             )
         }
