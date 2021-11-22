@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Text, View, StyleSheet, FlatList, Image, Dimensions, TouchableOpacity } from 'react-native';
 import Polygone from '../../../assets/home/polygone.png';
 import News1 from '../../../assets/home/news1.png';
 import News2 from '../../../assets/home/news2.png';
 import News3 from '../../../assets/home/news3.png';
+import Left from '../../../assets/home/left.png';
+import Right from '../../../assets/home/right.png';
 
 const News = () => {
     /*Obtenir les dimensions de l'écran*/
     /*const{ width,height } = Dimensions.get('screen')*/
 
-    const [currentIndex,setCurrentIndex] = useState(1)
-    const [refFlatlist,setRefFlatList] = useState('')
+    const [currentIndex,setCurrentIndex] = useState(0)
+    const refFlatlist = useRef()
 
     const newsTitle = 'NOUVEAUTÉS'
     const arrayNews = [
@@ -27,21 +29,25 @@ const News = () => {
         { id: 51,image: News2 },
         { id: 61,image: News3 },
     ]
+    const length = arrayNews.length
 
     useEffect(()=>{/*Affiche dans la console le dernier index enregistré*/
         console.log(currentIndex)
-    },[currentIndex])
 
-    const moveToElt = (item,index) => {/*Scroll jusqu'à l'élement choisit*/
-
-        setCurrentIndex(item.id)/*Enregistre la valeur de l'index de l'élément choisit par le User*/
-        
-        refFlatlist.scrollToIndex({/*Scroll par l'index de l'élément choisit*/
+        refFlatlist.current.scrollToIndex({/*Scroll par l'index de l'élément choisit*/
             animated:true,
-            index: index,
+            index: currentIndex,
             viewOffset: 0,
             viewPosition: 0.5
         })
+
+    },[currentIndex])
+
+    const prev = () => {/*Soustrait 1 à l'index*/
+        setCurrentIndex(currentIndex?currentIndex-1: length -1)
+    }
+    const next = () => {/*Ajoute 1 à l'index*/
+        setCurrentIndex(currentIndex === length -1? 0 : currentIndex+1)
     }
 
     return(
@@ -57,10 +63,11 @@ const News = () => {
 
             <View style={styles.flatListContainer}>
                 <FlatList
-                    ref={(ref)=> setRefFlatList(ref)}
+                    ref={refFlatlist}
                     horizontal
                     keyExtractor={(item) => item.id}
                     data={arrayNews}
+                    scrollEnabled={false}
                     renderItem={({item,index}) => {
 
                         return(
@@ -68,22 +75,47 @@ const News = () => {
                                 <TouchableOpacity 
                                     style={styles.btnNew} 
                                     activeOpacity={0.7}
-                                    onPress={() => moveToElt(item,index)}
                                 >
                                     <Image 
                                         style={
-                                            currentIndex === item.id?
+                                            currentIndex === index?
                                             [styles.styleImage,styles.active] 
                                             : 
                                             styles.styleImage
                                         } 
-                                        source={item.image}/>
+                                        source={item.image}
+                                    />
+                                    
                                 </TouchableOpacity>
                             </View>
                         )
                     }}
                     showsHorizontalScrollIndicator={false}
                 />
+                <TouchableOpacity 
+                    activeOpacity={0.5}
+                    style={[styles.btnFlastList,styles.left]}
+                    onPress={() => prev()}
+                >
+                    <Image 
+                        source={Left}
+                        style={styles.btnImage}
+                        resizeMode='contain'
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    activeOpacity={0.5}
+                    style={[styles.btnFlastList,styles.right]}
+                    onPress={() => next()}
+                >
+                    <Image 
+                        source={Right}
+                        style={styles.btnImage}
+                        resizeMode='contain'
+                    />
+                </TouchableOpacity>
+
             </View>
 
         </View>
@@ -117,6 +149,7 @@ const styles = StyleSheet.create({
         marginRight:2,
     },
     flatListContainer:{
+        position:'relative',
         flex:1,
         width:'100%',
     },
@@ -142,5 +175,26 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center',
+    },
+    left:{
+        left:0,
+        paddingLeft:10,
+        alignItems:'flex-start'
+    },
+    right:{
+        right:0,
+        paddingRight:10,
+        alignItems:'flex-end'
+    },
+    btnFlastList:{
+        position:'absolute',
+        zIndex:5,
+        height:'100%',
+        width:100,
+        justifyContent:'center',
+    },
+    btnImage:{
+        height:30,
+        width:30,
     }
 })
