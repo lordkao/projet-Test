@@ -35,7 +35,9 @@ const Home = ({jwt,isLoading,dataCategories}) => {
             </View>
             {/*Section bien-être en moins de 15min*/}
             <View style={[styles.beginNow]}>
-                <BeginNow/>
+                <BeginNow
+                    jwt={jwt}
+                />
             </View>
 
             {/*Découverte du programme santé*/}

@@ -1,30 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Redplay from '../../../assets/home/redplay.png';
 
-const BeginNow= () => {
+const BeginNow= ({jwt}) => {
 
-    const array = [1,2,3,4,5,6]
+
+    const[dataBegin,setDataBegin] = useState([])
+
+    const paramsGetBegin = {
+        method:'GET',
+        headers:{
+            'Authorization': jwt,
+            'Content-Type': 'application/json'
+        },
+    }
+    const urlBegin = 'https://api-r.ulteamapp.fr/api/channels?isThematique=1'
+
+    useEffect(() => {
+        fetch(urlBegin,paramsGetBegin)
+        .then(res => res.ok&& res.json())
+        .then(response =>{
+            setDataBegin([...response['hydra:member']])
+        })
+        .catch( err => alert(err))
+    },[jwt])
+
+    useEffect(()=>{
+        console.log(dataBegin[4].image.contentUrl)
+    },[dataBegin])
     
     return(
         <View style={styles.beginContainer}>
 
             {
-                array.map( (frame,index)=>{
+                dataBegin.map( (lesson,index)=>{
+
                     return (
+
                         <TouchableOpacity
-                            key={frame+index}
+                            key={lesson.id+index}
                             activeOpacity={0.7}
                             style={styles.btnBegin}
                         >
                             <Image 
+                                style={styles.imageBackground}
+                                source={{uri:lesson.image.contentUrl}}
+                            />
+                            <Image 
                                 style={styles.redPlay}
                                 source={Redplay}
                             />
-                            <Text style={styles.title}>Title</Text>{/*Titre*/}
-                            <Text style={styles.description}>Description</Text>{/*Description*/}
+                            <Text style={styles.title}>{lesson.name}</Text>{/*Titre*/}
+                            <Text style={styles.description}>{lesson.content}</Text>{/*Description*/}
 
                         </TouchableOpacity>
+                        
                     )
                 })
             }
@@ -49,25 +79,29 @@ const styles = StyleSheet.create({
         borderRadius:15,
         overflow:'hidden',
         marginVertical:5,
-        backgroundColor:'white',
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent:'flex-start',
+        alignItems:'flex-start'
+    },
+    imageBackground:{
+        position:'absolute',
+        zIndex:1,
+        opacity:0.4,
+        height:'100%',
+        width:'100%',
     },
     title:{
-        width:'100%',
-        height:'60%',
-        fontSize:18,
+        width:'85%',
+        fontSize:22,
         fontWeight:'bold',
         color:'white',
-        backgroundColor:'brown',
-        textAlign:'center'
+        textAlign:'left',
+        marginLeft:20
     },
     description:{
-        width:'100%',
-        height:'40%',
+        width:'85%',
         color:'white',
-        backgroundColor:'grey',
-        textAlign:'center'
+        textAlign:'left',
+        marginLeft:20
     },
     redPlay:{
         position:'absolute',

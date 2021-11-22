@@ -84,7 +84,6 @@ const HomePage = ({jwt}) => {
                 switchTab(activeTab)
             }
             
-
         </View>
     )
 }
