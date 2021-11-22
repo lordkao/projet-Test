@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import ButtonsHome from "./ButtonsHome";
 import DiscoverCategories from "./DiscoverCategories";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
@@ -18,7 +19,7 @@ const Home = ({jwt,isLoading,dataCategories}) => {
                 <News/>
             </View>
 
-            {/*Découverte des chaînes de la homePage*/}
+            {/*Découverte des chaînes de la homePage OK*/}
             <View style={[styles.discoverCategories]}>
                 <DiscoverCategories
                     jwt={jwt}
@@ -28,10 +29,8 @@ const Home = ({jwt,isLoading,dataCategories}) => {
             </View>
 
             {/*Boutons favoris et reprendre*/}
-            <View style={[styles.newsHomePage]}>
-                <Text style={[styles.newsHomePageContainer]}>
-                    Boutons favoris et reprendre !!
-                </Text>
+            <View style={[styles.buttons]}>
+                <ButtonsHome/>
             </View>
             {/*Section bien-être en moins de 15min*/}
             <View style={[styles.newsHomePage]}>
@@ -103,5 +102,12 @@ const styles = StyleSheet.create({
         width:'100%',
         justifyContent:'center',
         alignItems:'center'
+    },
+    buttons:{
+        height:120,
+        marginTop:20,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center',
     }
 })
