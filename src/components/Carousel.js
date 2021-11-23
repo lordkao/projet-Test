@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, Text, View, VirtualizedList, Dimensions, Image, TouchableOpacity } from 'react-native'
 import PlusCircle from '../assets/home/plus-circle.png'
 import Left from '../assets/left.png'
@@ -8,14 +8,17 @@ const Carousel = ({ data }) => {
     const{ width, height } = Dimensions.get('screen')
     const[currentIndex,setCurrentIndex] = useState(0)
 
-    const imageWidth = width*0.5
-    const imageHeight = imageWidth*0.85
-    const virtualizedList = useRef()
+    const imageWidth = (width-40)*0.5/*Calcul la largeur selon la taille de l'écran*/
+    const imageHeight = imageWidth*1/*Calcul la heuteur selon la taille de l'écran*/
+    const virtualizedList = useRef()/*Copy de VirtualisedList afin de faire ressortir ses fonctionnalités */
+    const length = data.length/*Longueur du tableau data*/
     
     const styles = StyleSheet.create({
         carouselContainer:{
             position:'relative',
             flex:1,
+            flexDirection:'row',
+            marginHorizontal:20
         },
         frameContainer:{
             flex:1,
@@ -25,9 +28,7 @@ const Carousel = ({ data }) => {
             width:imageWidth,
             justifyContent:'center',
             alignItems:'center',
-            borderWidth:1,
-            borderColor:'aqua',
-            paddingHorizontal:10,
+            paddingHorizontal:5,
         },
         frameContent:{
             position:'relative',
@@ -35,9 +36,7 @@ const Carousel = ({ data }) => {
             width:'100%',
             justifyContent:'flex-end',
             alignItems:'center',
-            borderWidth:1,
-            borderColor:'aqua',
-            borderRadius:20,
+            borderRadius:15,
             overflow:'hidden'
         },
         frameTitle:{
@@ -68,8 +67,8 @@ const Carousel = ({ data }) => {
             opacity:0.5
         },
         btnFrame:{
-            height:30,
-            width:'60%',
+            height:25,
+            width:'65%',
             justifyContent:'center',
             alignItems:'center',
             marginBottom:15,
@@ -93,30 +92,44 @@ const Carousel = ({ data }) => {
             alignItems:'center',
         },
         indicators:{
-            height:'100%',
             position:'absolute',
+            zIndex:5,
+            height:'100%',
+            paddingHorizontal:20,
             justifyContent:'center',
             alignItems:'center',
-            paddingHorizontal:10,
-            zIndex:5,
         },
         left:{
-            left:0,
+            left:-40,
             alignItems:'flex-start'
         },
         right:{
-            right:0,
+            right:-40,
             alignItems:'flex-end'
         },
         imageIndicators:{
             height:30,
-            width:30,
-            justifyContent:'center',
-            alignItems:'center',
+            width:20,
         }
     })
 
-    /*const data = [{name:'David'},{name:'Tyler'},{name:'Jessica'},{name:'Snow'}] Données qui seront exploitées dans VirtualizedList*/
+    /*Indicateurs du carousel*/
+    const prev = () => {
+        setCurrentIndex(currentIndex? currentIndex-2 : length-1)
+    }
+    const next = () => {
+        setCurrentIndex(currentIndex === length-1? 0 : currentIndex+2)
+    }
+
+    useEffect(()=>{/*Gère le scroll du carousel*/
+        console.log(currentIndex)
+        virtualizedList.current.scrollToIndex({
+            animated:true,
+            index:currentIndex,
+            viewOffset:0,
+            viewPosition:0
+        })
+    },[currentIndex])
 
     const getItem = (data,index) => ({/*Retourne un objet créé à l'aide de la valeur de data et de son index*/
         id: 'id: '+index,
@@ -154,11 +167,11 @@ const Carousel = ({ data }) => {
     return (
         <View style={styles.carouselContainer}>
             {/*Indicateurs*/}
-            <TouchableOpacity style={[styles.indicators,styles.left]}>
+            <TouchableOpacity 
+                style={[styles.indicators,styles.left]}
+                onPress={() => prev()}
+            >
                 <Image style={styles.imageIndicators} resizeMode='contain' source={Left}/>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.indicators,styles.right]}>
-                <Image style={styles.imageIndicators} resizeMode='contain' source={Right}/>
             </TouchableOpacity>
 
             <VirtualizedList
@@ -172,6 +185,14 @@ const Carousel = ({ data }) => {
                 keyExtractor={(item) => item.key}
                 pagingEnabled={false}
             />
+
+            <TouchableOpacity 
+                style={[styles.indicators,styles.right]}
+                onPress={() => next()}
+            >
+                <Image style={styles.imageIndicators} resizeMode='contain' source={Right}/>
+            </TouchableOpacity>
+
         </View>
     )
 }
