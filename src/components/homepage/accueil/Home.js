@@ -76,8 +76,6 @@ const styles = StyleSheet.create({
         paddingBottom:20,
     },
     news:{
-        height:220,
-        marginTop:10,
         width:'100%',
         justifyContent:'center',
         alignItems:'center'
@@ -100,27 +98,21 @@ const styles = StyleSheet.create({
         textAlignVertical:'center'
     },
     discoverCategories:{
-        height:380,
-        marginTop:20,
         width:'100%',
         justifyContent:'center',
         alignItems:'center'
     },
     buttons:{
-        height:120,
-        marginTop:20,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
     },
     beginNow:{
-        marginTop:20,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
     },
     discoverHealth:{
-        height:500,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',

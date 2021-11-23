@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
     beginContainer:{
         flex:1,
         width:'100%',
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        marginTop:20,
     },
     btnBegin:{
         position:'relative',

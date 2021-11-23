@@ -40,8 +40,9 @@ export default DiscoverCategories;
 
 const styles = StyleSheet.create({
     discoverContainer:{
-        height:'100%',
+        height:380,
         width:'100%',
+        marginTop:20,
         paddingHorizontal:10,
         flexWrap:'wrap',
         flexDirection:'row',

@@ -35,14 +35,15 @@ export default ButtonsHome;
 
 const styles = StyleSheet.create({
     buttonsContainer:{
-        flex:1,
         width:'100%',
+        height:120,
+        marginTop:10,
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
     },
     button:{
-        height:80,
+        height:70,
         width:'46%',
         flexDirection:'row',
         justifyContent:'center',
