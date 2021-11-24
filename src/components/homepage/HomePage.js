@@ -2,7 +2,7 @@ import React,{ useState,useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Home from './accueil/Home';
 import FixedMenu from './fixedMenu/FixedMenu';
-import config from '../../../config'
+import config from '../../../config';
 
 const HomePage = ({jwt}) => {
 
