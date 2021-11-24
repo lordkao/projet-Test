@@ -3,60 +3,67 @@ import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import BeginNow from "./BeginNow";
 import ButtonsHome from "./ButtonsHome";
 import DiscoverCategories from "./DiscoverCategories";
+import DiscoverChannels from "./DiscoverChannels";
 import DiscoverHealth from "./DiscoverHealth";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
 
 const Home = ({jwt,isLoading,dataCategories,dataChannels,dataPrograms}) => {
     return(
-        <ScrollView style={styles.scrollView}>
-
-            {/*Header de la homePage OK*/}
-            <View style={[styles.headerHomePage]}>
-                <HeaderHome/>
+        isLoading?
+            <View style={{flex:1,width:'100%'}}>
+                <Text style={{color:'white',fontSize:28}}>Chargement en cours...</Text>
             </View>
+            :
+            <ScrollView style={styles.scrollView}>
+                
+                {/*Header de la homePage OK*/}
+                <View style={[styles.headerHomePage]}>
+                    <HeaderHome/>
+                </View>
 
-            {/*Nouveautés de la homePage OK*/}
-            <View style={[styles.news]}>
-                <News/>
-            </View>
+                {/*Nouveautés de la homePage OK*/}
+                <View style={[styles.news]}>
+                    <News/>
+                </View>
 
-            {/*Découverte des chaînes de la homePage OK*/}
-            <View style={[styles.discoverCategories]}>
-                <DiscoverCategories
-                    jwt={jwt}
-                    isLoading={isLoading}
-                    dataCategories={dataCategories}
-                />
-            </View>
+                {/*Découverte des chaînes de la homePage OK*/}
+                <View style={[styles.discoverCategories]}>
+                    <DiscoverCategories
+                        jwt={jwt}
+                        isLoading={isLoading}
+                        dataCategories={dataCategories}
+                    />
+                </View>
 
-            {/*Boutons favoris et reprendre OK*/}
-            <View style={[styles.buttons]}>
-                <ButtonsHome/>
-            </View>
-            {/*Section bien-être en moins de 15min OK*/}
-            <View style={[styles.beginNow]}>
-                <BeginNow
-                    jwt={jwt}
-                />
-            </View>
+                {/*Boutons favoris et reprendre OK*/}
+                <View style={[styles.buttons]}>
+                    <ButtonsHome/>
+                </View>
+                {/*Section bien-être en moins de 15min OK*/}
+                <View style={[styles.beginNow]}>
+                    <BeginNow
+                        jwt={jwt}
+                    />
+                </View>
 
-            {/*Découverte du programme santé*/}
-            <View style={[styles.discoverHealth]}>
-                <DiscoverHealth 
-                    dataPrograms={dataPrograms}
-                    isLoading={isLoading}
-                />
-            </View>
+                {/*Découverte du programme santé*/}
+                <View style={[styles.discoverHealth]}>
+                    <DiscoverHealth 
+                        dataPrograms={dataPrograms}
+                        isLoading={isLoading}
+                    />
+                </View>
 
-            {/*Découverte des chaînes*/}
-            <View style={[styles.newsHomePage]}>
-                <Text style={[styles.newsHomePageContainer]}>
-                    Découvrez nos chaînes
-                </Text>
-            </View>
+                {/*Découverte des chaînes*/}
+                <View style={[styles.discoverChannels]}>
+                    <DiscoverChannels
+                        isLoading={isLoading}
+                        dataChannels={dataChannels}
+                    />
+                </View>
 
-        </ScrollView>
+            </ScrollView>
     )
 }
 
@@ -76,51 +83,31 @@ const styles = StyleSheet.create({
         paddingBottom:20,
     },
     news:{
-        height:220,
-        marginTop:10,
         width:'100%',
         justifyContent:'center',
         alignItems:'center'
-    },
-    newsHomePage:{
-        backgroundColor:'green',
-        height:180,
-        marginTop:10,
-        width:'100%',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    newsHomePageContainer:{
-        flex:1,
-        width:'90%',
-        backgroundColor:'brown',
-        color:'white',
-        fontSize:20,
-        textAlign:'center',
-        textAlignVertical:'center'
     },
     discoverCategories:{
-        height:380,
-        marginTop:20,
         width:'100%',
         justifyContent:'center',
         alignItems:'center'
     },
     buttons:{
-        height:120,
-        marginTop:20,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
     },
     beginNow:{
-        marginTop:20,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
     },
     discoverHealth:{
-        height:500,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    discoverChannels:{
         width:'100%',
         justifyContent:'center',
         alignItems:'center',

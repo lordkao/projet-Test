@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Redplay from '../../../assets/home/redplay.png';
 import Loader from "../../Loader";
 
@@ -36,7 +36,7 @@ const BeginNow= ({jwt}) => {
             
         })
         .catch( err => alert(err))
-    },[jwt])
+    },[])
 
     const headingTitle = 'votre bien-être en moins de 15mn'.toUpperCase()
 
@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
     beginContainer:{
         flex:1,
         width:'100%',
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        marginTop:20,
     },
     btnBegin:{
         position:'relative',

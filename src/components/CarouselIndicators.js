@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
-import Left from '../assets/home/left.png';
-import Right from '../assets/home/right.png';
+import Left from '../assets/left.png';
+import Right from '../assets/right.png';
 
 const CarouselIndicators = ({array}) => {
 
@@ -61,7 +61,6 @@ const CarouselIndicators = ({array}) => {
                     }}
                 />
                 <TouchableOpacity 
-                    activeOpacity={0.5}
                     style={[styles.btnFlastList,styles.left]}
                     onPress={() => prev()}
                 >
@@ -73,7 +72,6 @@ const CarouselIndicators = ({array}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity 
-                    activeOpacity={0.5}
                     style={[styles.btnFlastList,styles.right]}
                     onPress={() => next()}
                 >
@@ -121,12 +119,10 @@ const styles = StyleSheet.create({
     },
     left:{
         left:0,
-        paddingLeft:10,
         alignItems:'flex-start'
     },
     right:{
         right:0,
-        paddingRight:10,
         alignItems:'flex-end'
     },
     btnFlastList:{
@@ -134,6 +130,7 @@ const styles = StyleSheet.create({
         zIndex:5,
         height:'100%',
         width:100,
+        paddingHorizontal:10,
         justifyContent:'center',
     },
     btnImage:{

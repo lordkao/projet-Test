@@ -53,8 +53,9 @@ export default News;
 
 const styles = StyleSheet.create({
     newsContainer:{
-        flex:1,
+        height:220,
         width:'100%',
+        marginTop:10,
         justifyContent:'center',
         alignItems:'flex-start',
     },
