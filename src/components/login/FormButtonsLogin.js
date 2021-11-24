@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import config from "../../../config";
 
 const FormButtonsLogin = ({
     setJsonWebToken,
@@ -10,7 +11,7 @@ const FormButtonsLogin = ({
     setShowHomePage
 }) => {
 
-    const urlConnect = 'https://api-r.ulteamapp.fr/api/login_check'
+    const urlConnect = config.API_URL_LOGIN
 
     const infosUser = {/*Objet qui devra être joint au body de la requête POST*/
         username : userName,
