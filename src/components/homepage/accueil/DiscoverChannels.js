@@ -1,5 +1,5 @@
-import React, { useRef,useState,useEffect } from 'react'
-import { StyleSheet, Text, View, VirtualizedList, Dimensions, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { StyleSheet, Text, View} from 'react-native'
 import Carousel from '../../Carousel'
 
 const DiscoverChannels = ({ isLoading, dataChannels}) => {
@@ -8,7 +8,7 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
         let array = []
         for(let i = 0 ; i < iteration; i++){
             if(array.length === 10){
-                return 0
+                return array
             }
             else if(currentArray[i]){
                 array.push(currentArray[i])
@@ -22,6 +22,7 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
     const channelBienetre = copyData(60,dataChannels[1])
     const channelOrganisation = copyData(60,dataChannels[2])
     const channelSante = copyData(60,dataChannels[3])
+    console.log(channelSante)
     
     console.log('longueur du tableau'+channelOrganisation.length)
 
@@ -32,7 +33,9 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
             </View>
             :
             <View style={styles.discoverChannels}>
+
                 <Text style={styles.headingTitle}>DÉCOUVREZ NOS CHAÎNES</Text>
+
                 <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Sport</Text>
                     <Carousel data={channelSport}/>
@@ -47,12 +50,12 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
                     <Text style={styles.channelName}>Organisation</Text>
                     <Carousel data={channelOrganisation}/>
                 </View>
-            
-            {/* <View style={styles.categoryFrame}>
+
+                <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Santé</Text>
                     <Carousel data={channelSante}/>
-                </View> */}
-
+                </View>
+            
             </View>
     )
 }

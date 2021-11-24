@@ -8,9 +8,17 @@ import DiscoverHealth from "./DiscoverHealth";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
 
-const Home = ({jwt,isLoading,dataCategories,dataChannels,dataPrograms}) => {
+const Home = ({
+    jwt,
+    isLoading,
+    dataCategories,
+    dataChannels,
+    dataPrograms,
+    dataBegin,
+    isLoadingBegin
+}) => {
     return(
-        isLoading?
+        isLoading && isLoadingBegin?
             <View style={{flex:1,width:'100%'}}>
                 <Text style={{color:'white',fontSize:28}}>Chargement en cours...</Text>
             </View>
@@ -43,7 +51,8 @@ const Home = ({jwt,isLoading,dataCategories,dataChannels,dataPrograms}) => {
                 {/*Section bien-être en moins de 15min OK*/}
                 <View style={[styles.beginNow]}>
                     <BeginNow
-                        jwt={jwt}
+                        dataBegin={dataBegin}
+                        isLoadingBegin={isLoadingBegin}
                     />
                 </View>
 

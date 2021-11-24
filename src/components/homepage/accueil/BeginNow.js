@@ -3,11 +3,11 @@ import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Redplay from '../../../assets/home/redplay.png';
 import Loader from "../../Loader";
 
-const BeginNow= ({jwt}) => {
+const BeginNow= ({ dataBegin,isLoadingBegin }) => {
 
 
-    const[dataBegin,setDataBegin] = useState([])
-    const[isLoading,setIsLoading] = useState(true)
+    /*const[dataBegin,setDataBegin] = useState([])
+    const[isLoadingBegin,setIsLoadingBegin] = useState(true)
 
     const paramsGetBegin = {
         method:'GET',
@@ -32,11 +32,11 @@ const BeginNow= ({jwt}) => {
                 response['hydra:member'][6],
                 response['hydra:member'][7],
             ])    
-            setIsLoading(false)
+            setIsLoadingBegin(false)
             
         })
         .catch( err => alert(err))
-    },[]) /**/
+    },[]) */
 
     const headingTitle = 'votre bien-être en moins de 15mn'.toUpperCase()
 
@@ -47,7 +47,7 @@ const BeginNow= ({jwt}) => {
             <Text style={styles.headingTitle}>{headingTitle}</Text>
 
             {   
-                isLoading?
+                isLoadingBegin?
                     /*Logo de chargement en attente de recevoir les données*/
                     <Loader/>
                 :
