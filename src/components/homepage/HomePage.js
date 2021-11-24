@@ -49,7 +49,7 @@ const HomePage = ({jwt}) => {
       })
       .catch((err) => alert('La requête s\'est mal déroulée' + err))
       .finally(() => setIsLoading(false)/*Set la variable isLoading à false*/)
-  },[jwt])
+  },[])
 
     function switchTab(value){/*Fonction qui affiche la page selon l'onglet sélectionné*/
         if(value === 0){

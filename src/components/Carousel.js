@@ -3,17 +3,20 @@ import { StyleSheet, Text, View, VirtualizedList, Dimensions, Image, TouchableOp
 import PlusCircle from '../assets/home/plus-circle.png'
 import Left from '../assets/left.png'
 import Right from '../assets/right.png'
+import Indicator from './Indicator'
 
 const Carousel = ({ data }) => {
     const{ width, height } = Dimensions.get('screen')
     const[currentIndex,setCurrentIndex] = useState(0)
-
     const imageWidth = (width-40)*0.5/*Calcul la largeur selon la taille de l'écran*/
     const imageHeight = imageWidth*1/*Calcul la heuteur selon la taille de l'écran*/
     const virtualizedList = useRef()/*Copy de VirtualisedList afin de faire ressortir ses fonctionnalités */
     const length = data.length/*Longueur du tableau data*/
     
     const styles = StyleSheet.create({
+        mainContainer:{
+            flex:1
+        },
         carouselContainer:{
             position:'relative',
             flex:1,
@@ -91,64 +94,11 @@ const Carousel = ({ data }) => {
             justifyContent:'center',
             alignItems:'center',
         },
-        indicators:{
-            position:'absolute',
-            zIndex:5,
-            height:'100%',
-            paddingHorizontal:20,
-            justifyContent:'center',
-            alignItems:'center',
-        },
-        left:{
-            left:-40,
-            alignItems:'flex-start'
-        },
-        right:{
-            right:-40,
-            alignItems:'flex-end'
-        },
-        imageIndicators:{
-            height:30,
-            width:20,
-        }
     })
-
-    /*Indicateurs du carousel*/
-    /*const prev = () => {
-        setCurrentIndex(currentIndex? currentIndex-2 : length-1)
-    }
-    const next = () => {
-        setCurrentIndex(currentIndex === length-1? 0 : currentIndex+2)
-    } */
-
-    const prev = () => {
-        if((currentIndex === 0)||((currentIndex-2)< 0)){
-
-            if((length-1)%2 == 1 ){/*Retourne un index paire si l'index maximum est impaire*/
-                setCurrentIndex((length-1) -1)
-                console.log('impaire')
-            }
-            else if((length-1)%2 == 0 ){/*Retourne le dernier index si celui-ci est paire*/
-                console.log('paire')
-                setCurrentIndex(length-1)
-            }
-        }
-        else{
-            setCurrentIndex(currentIndex-2)
-        }
-    }
-
-    const next = () => {
-        if((currentIndex+2) > length-1){
-            setCurrentIndex(0)
-        }
-        else{
-            setCurrentIndex(currentIndex+2)
-        }
-    }
 
     useEffect(()=>{/*Gère le scroll du carousel*/
         console.log('Valeur de currentIndex : '+currentIndex)
+        console.log(length)
         virtualizedList.current.scrollToIndex({
             animated:true,
             index:currentIndex,
@@ -191,36 +141,81 @@ const Carousel = ({ data }) => {
     }
 
     return (
-        <View style={styles.carouselContainer}>
-            {/*Indicateurs*/}
-            <TouchableOpacity 
-                style={[styles.indicators,styles.left]}
-                onPress={() => prev()}
-            >
-                <Image style={styles.imageIndicators} resizeMode='contain' source={Left}/>
-            </TouchableOpacity>
+        <View style={styles.mainContainer}>
 
-            <VirtualizedList
-                ref={virtualizedList}
-                initialNumToRender={10}
-                data={data}
-                getItem={getItem}
-                getItemCount={getItemCount}
-                renderItem={({item}) => <Item name={item.name} imageUrl={item.imageUrl}/>}
-                horizontal
-                keyExtractor={(item) => item.key}
-                pagingEnabled={false}
-            />
+            <View style={styles.carouselContainer}>
+                {/*Indicateur gauche*/}
+                <Indicator 
+                    icon={Left}
+                    side={true}/*Si true le sens est à gauche sinon à droite*/
+                    currentIndex={currentIndex}
+                    setCurrentIndex={setCurrentIndex}
+                    dataLength={length}
+                />
 
-            <TouchableOpacity 
-                style={[styles.indicators,styles.right]}
-                onPress={() => next()}
-            >
-                <Image style={styles.imageIndicators} resizeMode='contain' source={Right}/>
-            </TouchableOpacity>
+                <VirtualizedList
+                    ref={virtualizedList}
+                    initialNumToRender={10}
+                    data={data}
+                    getItem={getItem}
+                    getItemCount={getItemCount}
+                    renderItem={({item}) => <Item name={item.name} imageUrl={item.imageUrl}/>}
+                    horizontal
+                    keyExtractor={(item) => item.key}
+                    pagingEnabled={false}
+                    scrollEnabled={false}
+                />
+                {/*Indicateur droite*/}
+                <Indicator 
+                    icon={Right}
+                    side={false}/*Si true le sens est à gauche sinon à droite*/
+                    currentIndex={currentIndex}
+                    setCurrentIndex={setCurrentIndex}
+                    dataLength={length}
+                />
+
+            </View>
+
+            {/*Indicateurs de page du carousel*/}
+            <View style={indicatorsStyle.indicatorsContainer}>
+                {
+                    data.map( (elt,index) => {
+                        return (
+                            index%2 === 0 && /*Un indicateur est créé seulement si son index est paire ou égale à 0*/
+                                <View 
+                                key={'indicator-key-'+index} 
+                                style={/*Si currentIndex vaut son index alors ce composant ce color en blanc*/
+                                    currentIndex===index?
+                                            [indicatorsStyle.indicators,{backgroundColor:'white'}]
+                                        :
+                                            indicatorsStyle.indicators
+                                }
+                            />
+                        )
+                    })
+                }
+            </View>
 
         </View>
     )
 }
 
 export default Carousel
+
+const indicatorsStyle = StyleSheet.create({
+    indicatorsContainer:{
+        height:50,
+        width:'100%',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    indicators:{
+        height:10,
+        width:10,
+        borderRadius:5,
+        borderColor:'white',
+        borderWidth:1,
+        marginHorizontal:5,
+    }
+})

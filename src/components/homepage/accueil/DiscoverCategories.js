@@ -7,31 +7,38 @@ const DiscoverCategories = ({isLoading,dataCategories}) => {
 
     return(
         <View style={styles.discoverContainer}>
-            {
-                isLoading?
-                        /*Logo de chargement en attente de recevoir les données*/
-                        <Loader/>
-                    :
-                        /*Boucle dans dataCategories pour créer un bouton de chaque categorie*/
-                        dataCategories.map((category,index)=>{
-                            return(
-                                <View key={category.id+'-'+index} style={styles.discoverFrame}>
-                                    <TouchableOpacity
-                                        style={styles.btnCategory}
-                                        activeOpacity={0.7}
-                                    >
-                                        <Image 
-                                            source={{uri:category.illustrationUrl}} 
-                                            style={styles.imageContainer}
-                                        />
-                                        <Text style={styles.title}>
-                                            {category.name}
-                                        </Text>
-                                    </TouchableOpacity>
-                                </View>
-                            )
-                        })
-            }
+            <Text style={styles.headingTitle}>
+                DÉCOUVREZ NOS CATÉGORIES
+            </Text>
+
+            <View style={styles.contentContainer}>
+                {
+                    isLoading?
+                            /*Logo de chargement en attente de recevoir les données*/
+                            <Loader/>
+                        :
+                            /*Boucle dans dataCategories pour créer un bouton de chaque categorie*/
+                            dataCategories.map((category,index)=>{
+                                return(
+                                    <View key={category.id+'-'+index} style={styles.discoverFrame}>
+                                        <TouchableOpacity
+                                            style={styles.btnCategory}
+                                            activeOpacity={0.7}
+                                        >
+                                            <Image 
+                                                resizeMode='cover'
+                                                source={{uri:category.illustrationUrl}} 
+                                                style={styles.imageContainer}
+                                            />
+                                            <Text style={styles.title}>
+                                                {category.name}
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                            })
+                }
+            </View>
         </View>
     )
 }
@@ -40,14 +47,27 @@ export default DiscoverCategories;
 
 const styles = StyleSheet.create({
     discoverContainer:{
-        height:380,
+        flex:1,
         width:'100%',
         marginTop:20,
-        paddingHorizontal:10,
-        flexWrap:'wrap',
-        flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
+    },
+    contentContainer:{
+        height:380,
+        width:'100%',
+        flexWrap:'wrap',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        marginTop:10,
+        paddingHorizontal:10,
+    },
+    headingTitle:{
+        color:'white',
+        fontWeight:'900',
+        fontSize:18,
+        letterSpacing:0.5,
     },
     btnCategory:{
         flex:1,
@@ -59,10 +79,11 @@ const styles = StyleSheet.create({
         position:'relative',
         zIndex:0,
         height:'50%',
-        width:'50%',
+        width:'49.5%',
         padding:3,
         borderRadius:25,
         overflow:'hidden',
+        marginBottom:10
     },
     title:{
         zIndex:5,

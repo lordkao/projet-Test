@@ -44,16 +44,17 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
                     <Carousel data={channelBienetre}/>
                 </View>
 
-             {/*   <View style={styles.categoryFrame}>
+                <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Organisation</Text>
                     <Carousel data={channelOrganisation}/>
-                </View>*/}
-
-                <View style={styles.categoryFrame}>
+                </View>
+            
+               {/* <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Santé</Text>
                     <Carousel data={channelSante}/>
                 </View> 
-                
+                */}
+
             </View>
     )
 }
