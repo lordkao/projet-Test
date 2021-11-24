@@ -13,88 +13,13 @@ const Carousel = ({ data }) => {
     const virtualizedList = useRef()/*Copy de VirtualisedList afin de faire ressortir ses fonctionnalités */
     const length = data.length/*Longueur du tableau data*/
     
-    const styles = StyleSheet.create({
-        mainContainer:{
-            flex:1
-        },
-        carouselContainer:{
-            position:'relative',
-            flex:1,
-            flexDirection:'row',
-            marginHorizontal:20
-        },
-        frameContainer:{
-            flex:1,
-        },
-        frame:{
-            height:imageHeight,
-            width:imageWidth,
-            justifyContent:'center',
-            alignItems:'center',
-            paddingHorizontal:5,
-        },
-        frameContent:{
-            position:'relative',
-            flex:1,
-            width:'100%',
-            justifyContent:'flex-end',
-            alignItems:'center',
-            borderRadius:15,
-            overflow:'hidden'
-        },
-        frameTitle:{
-            position:'absolute',
-            zIndex:0,
-            height:'100%',
-            color:'white',
-            fontSize:20,
-            fontWeight:'bold',
-            textAlign:'center',
-            textAlignVertical:'center',
-        },
-        numberVideos:{
-            position:'absolute',
-            zIndex:0,
-            top:10,
-            color:'white',
-            fontSize:16,
-            fontWeight:'bold',
-            textAlign:'center',
-            textAlignVertical:'center',
-        },
-        imageBackground:{
-            position:'absolute',
-            zIndex:-1,
-            width:'100%',
-            height:'100%',
-            opacity:0.5
-        },
-        btnFrame:{
-            height:25,
-            width:'65%',
-            justifyContent:'center',
-            alignItems:'center',
-            marginBottom:15,
-            backgroundColor:'white',
-            borderRadius:8,
-        },
-        btnFrameText:{
-            fontSize:11,
-            fontWeight:'bold',
-            textAlign:'center',
-            textAlignVertical:'center',
-        },
-        plusCircle:{
-            height:15,
-            width:15,
-            marginRight:5
-        },
-        btnFrameContainer:{
-            flexDirection:'row',
-            justifyContent:'center',
-            alignItems:'center',
-        },
-    })
+    const sizeStyle = {
+        height:imageHeight,
+        width:imageWidth,
+        justifyContent:'center',
+        alignItems:'center',
+        paddingHorizontal:5,
+    }
 
     useEffect(()=>{/*Gère le scroll du carousel*/
         console.log('Valeur de currentIndex : '+currentIndex)
@@ -117,10 +42,10 @@ const Carousel = ({ data }) => {
 
     const getItemCount = (data) => data.length /*Retourne le nombre d'items à créer*/
 
-    const Item = ({ name, imageUrl}) => {
+    const Item = ({ name, imageUrl}) => {/*L'élément qui sera rendu*/
         return(
             <View style={styles.frameContainer}>
-                <View style={styles.frame}>
+                <View style={sizeStyle}>
                     <View style={styles.frameContent}>
                         
                         <Image source={{uri:imageUrl}} style={styles.imageBackground}/>{/*Image de fond*/}
@@ -177,7 +102,7 @@ const Carousel = ({ data }) => {
             </View>
 
             {/*Indicateurs de page du carousel*/}
-            <View style={indicatorsStyle.indicatorsContainer}>
+            <View style={styles.indicatorsContainer}>
                 {
                     data.map( (elt,index) => {
                         return (
@@ -186,9 +111,9 @@ const Carousel = ({ data }) => {
                                 key={'indicator-key-'+index} 
                                 style={/*Si currentIndex vaut son index alors ce composant ce color en blanc*/
                                     currentIndex===index?
-                                            [indicatorsStyle.indicators,{backgroundColor:'white'}]
+                                            [styles.indicators,{backgroundColor:'white'}]
                                         :
-                                            indicatorsStyle.indicators
+                                            styles.indicators
                                 }
                             />
                         )
@@ -202,7 +127,80 @@ const Carousel = ({ data }) => {
 
 export default Carousel
 
-const indicatorsStyle = StyleSheet.create({
+const styles = StyleSheet.create({
+    mainContainer:{
+        flex:1
+    },
+    carouselContainer:{
+        position:'relative',
+        flex:1,
+        flexDirection:'row',
+        marginHorizontal:20
+    },
+    frameContainer:{
+        flex:1,
+    },
+    frameContent:{
+        position:'relative',
+        flex:1,
+        width:'100%',
+        justifyContent:'flex-end',
+        alignItems:'center',
+        borderRadius:15,
+        overflow:'hidden'
+    },
+    frameTitle:{
+        position:'absolute',
+        zIndex:0,
+        height:'100%',
+        color:'white',
+        fontSize:20,
+        fontWeight:'bold',
+        textAlign:'center',
+        textAlignVertical:'center',
+    },
+    numberVideos:{
+        position:'absolute',
+        zIndex:0,
+        top:10,
+        color:'white',
+        fontSize:16,
+        fontWeight:'bold',
+        textAlign:'center',
+        textAlignVertical:'center',
+    },
+    imageBackground:{
+        position:'absolute',
+        zIndex:-1,
+        width:'100%',
+        height:'100%',
+        opacity:0.5
+    },
+    btnFrame:{
+        height:25,
+        width:'65%',
+        justifyContent:'center',
+        alignItems:'center',
+        marginBottom:15,
+        backgroundColor:'white',
+        borderRadius:8,
+    },
+    btnFrameText:{
+        fontSize:11,
+        fontWeight:'bold',
+        textAlign:'center',
+        textAlignVertical:'center',
+    },
+    plusCircle:{
+        height:15,
+        width:15,
+        marginRight:5
+    },
+    btnFrameContainer:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+    },
     indicatorsContainer:{
         height:50,
         width:'100%',
