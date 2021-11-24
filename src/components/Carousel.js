@@ -114,15 +114,41 @@ const Carousel = ({ data }) => {
     })
 
     /*Indicateurs du carousel*/
-    const prev = () => {
+    /*const prev = () => {
         setCurrentIndex(currentIndex? currentIndex-2 : length-1)
     }
     const next = () => {
         setCurrentIndex(currentIndex === length-1? 0 : currentIndex+2)
+    } */
+
+    const prev = () => {
+        if((currentIndex === 0)||((currentIndex-2)< 0)){
+
+            if((length-1)%2 == 1 ){/*Retourne un index paire si l'index maximum est impaire*/
+                setCurrentIndex((length-1) -1)
+                console.log('impaire')
+            }
+            else if((length-1)%2 == 0 ){/*Retourne le dernier index si celui-ci est paire*/
+                console.log('paire')
+                setCurrentIndex(length-1)
+            }
+        }
+        else{
+            setCurrentIndex(currentIndex-2)
+        }
+    }
+
+    const next = () => {
+        if((currentIndex+2) > length-1){
+            setCurrentIndex(0)
+        }
+        else{
+            setCurrentIndex(currentIndex+2)
+        }
     }
 
     useEffect(()=>{/*Gère le scroll du carousel*/
-        console.log(currentIndex)
+        console.log('Valeur de currentIndex : '+currentIndex)
         virtualizedList.current.scrollToIndex({
             animated:true,
             index:currentIndex,
@@ -176,7 +202,7 @@ const Carousel = ({ data }) => {
 
             <VirtualizedList
                 ref={virtualizedList}
-                initialNumToRender={4}
+                initialNumToRender={10}
                 data={data}
                 getItem={getItem}
                 getItemCount={getItemCount}
