@@ -15,7 +15,7 @@ const BeginNow= ({jwt}) => {
             'Authorization': jwt,
             'Content-Type': 'application/json'
         },
-    }
+    } 
     const urlBegin = 'https://api-r.ulteamapp.fr/api/channels?isThematique=1'
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const BeginNow= ({jwt}) => {
             
         })
         .catch( err => alert(err))
-    },[])
+    },[]) /**/
 
     const headingTitle = 'votre bien-être en moins de 15mn'.toUpperCase()
 

@@ -37,19 +37,20 @@ const Carousel = ({ data }) => {
         name: data[index].name,
         key: data[index].name + index,
         imageUrl: data[index].imageUrl,
-        category: data[index].categoryName
+        category: data[index].categoryName,
+        numberVideos: data[index].activeVideoCount
     })  
 
     const getItemCount = (data) => data.length /*Retourne le nombre d'items à créer*/
 
-    const Item = ({ name, imageUrl}) => {/*L'élément qui sera rendu*/
+    const Item = ({ name, imageUrl, numberVideos}) => {/*L'élément qui sera rendu*/
         return(
             <View style={styles.frameContainer}>
                 <View style={sizeStyle}>
                     <View style={styles.frameContent}>
                         
                         <Image source={{uri:imageUrl}} style={styles.imageBackground}/>{/*Image de fond*/}
-                        <Text style={styles.numberVideos}>44 vidéos</Text>{/*Nombre de vidéos du thème de la catégorie*/}
+                        <Text style={styles.numberVideos}>{numberVideos} vidéos</Text>{/*Nombre de vidéos du thème de la catégorie*/}
                         <Text style={styles.frameTitle}>{name}</Text>{/*Titre du thème de la catégorie*/}
 
                         <TouchableOpacity activeOpacity={0.7} style={styles.btnFrame}>{/*Bouton voir la chaîne*/}
@@ -84,7 +85,7 @@ const Carousel = ({ data }) => {
                     data={data}
                     getItem={getItem}
                     getItemCount={getItemCount}
-                    renderItem={({item}) => <Item name={item.name} imageUrl={item.imageUrl}/>}
+                    renderItem={({item}) => <Item name={item.name} imageUrl={item.imageUrl} numberVideos={item.numberVideos}/>}
                     horizontal
                     keyExtractor={(item) => item.key}
                     pagingEnabled={false}

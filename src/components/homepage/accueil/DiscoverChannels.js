@@ -4,26 +4,25 @@ import Carousel from '../../Carousel'
 
 const DiscoverChannels = ({ isLoading, dataChannels}) => {
 
-    function copyData(newArray,iteration,currentArray){/*Fonction qui permet de recopier les données dans un tableau*/
+    function copyData(iteration,currentArray){/*Fonction qui permet de recopier les données dans un tableau*/
+        let array = []
         for(let i = 0 ; i < iteration; i++){
-            if(newArray.length === 10){
+            if(array.length === 10){
                 return 0
             }
             else if(currentArray[i]){
-                newArray.push(currentArray[i])
+                array.push(currentArray[i])
                 console.log('success'+ i)
             }
         }
+        return array
     }
 
-    const channelSport = []
-    const channelBienetre = []
-    const channelOrganisation = []
-    const channelSante = []
-    copyData(channelSport,60,dataChannels[0])
-    copyData(channelBienetre,60,dataChannels[1])
-    copyData(channelOrganisation,60,dataChannels[2])
-    copyData(channelSante,60,dataChannels[3])
+    const channelSport = copyData(60,dataChannels[0])
+    const channelBienetre = copyData(60,dataChannels[1])
+    const channelOrganisation = copyData(60,dataChannels[2])
+    const channelSante = copyData(60,dataChannels[3])
+    
     console.log('longueur du tableau'+channelOrganisation.length)
 
     return(
@@ -49,11 +48,10 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
                     <Carousel data={channelOrganisation}/>
                 </View>
             
-               {/* <View style={styles.categoryFrame}>
+            {/* <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Santé</Text>
                     <Carousel data={channelSante}/>
-                </View> 
-                */}
+                </View> */}
 
             </View>
     )
