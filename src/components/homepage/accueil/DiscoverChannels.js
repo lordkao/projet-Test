@@ -1,29 +1,29 @@
-import React, { useRef,useState,useEffect } from 'react'
-import { StyleSheet, Text, View, VirtualizedList, Dimensions, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { StyleSheet, Text, View} from 'react-native'
 import Carousel from '../../Carousel'
 
 const DiscoverChannels = ({ isLoading, dataChannels}) => {
 
-    function copyData(newArray,iteration,currentArray){/*Fonction qui permet de recopier les données dans un tableau*/
+    function copyData(iteration,currentArray){/*Fonction qui permet de recopier les données dans un tableau*/
+        let array = []
         for(let i = 0 ; i < iteration; i++){
-            if(newArray.length === 10){
-                return 0
+            if(array.length === 10){
+                return array
             }
             else if(currentArray[i]){
-                newArray.push(currentArray[i])
+                array.push(currentArray[i])
                 console.log('success'+ i)
             }
         }
+        return array
     }
 
-    const channelSport = []
-    const channelBienetre = []
-    const channelOrganisation = []
-    const channelSante = []
-    copyData(channelSport,60,dataChannels[0])
-    copyData(channelBienetre,60,dataChannels[1])
-    copyData(channelOrganisation,60,dataChannels[2])
-    copyData(channelSante,60,dataChannels[3])
+    const channelSport = copyData(60,dataChannels[0])
+    const channelBienetre = copyData(60,dataChannels[1])
+    const channelOrganisation = copyData(60,dataChannels[2])
+    const channelSante = copyData(60,dataChannels[3])
+    console.log(channelSante)
+    
     console.log('longueur du tableau'+channelOrganisation.length)
 
     return(
@@ -33,7 +33,9 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
             </View>
             :
             <View style={styles.discoverChannels}>
+
                 <Text style={styles.headingTitle}>DÉCOUVREZ NOS CHAÎNES</Text>
+
                 <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Sport</Text>
                     <Carousel data={channelSport}/>
@@ -48,13 +50,12 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
                     <Text style={styles.channelName}>Organisation</Text>
                     <Carousel data={channelOrganisation}/>
                 </View>
-            
+
                {/* <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Santé</Text>
                     <Carousel data={channelSante}/>
-                </View> 
-                */}
-
+                </View>*/}
+            
             </View>
     )
 }

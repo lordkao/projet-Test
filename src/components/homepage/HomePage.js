@@ -11,7 +11,11 @@ const HomePage = ({jwt}) => {
     const [dataChannels,setDataChannels] = useState([])/*Contient un array des chaînes*/
     const [dataPrograms,setDataPrograms] = useState([])/*Contient un array des programmes*/
 
-    const url='https://api-r.ulteamapp.fr/api/custom/menu'/*url des catégories*/
+    const[dataBegin,setDataBegin] = useState([])
+    const[isLoadingBegin,setIsLoadingBegin] = useState(true)
+
+    const url='https://api-r.ulteamapp.fr/api/custom/menu'/*Url des catégories*/
+    const urlBegin = 'https://api-r.ulteamapp.fr/api/channels?isThematique=1'/*Url cours en 15 min */
     const paramsGet = {/*paramètres de requête pour obtenir les categories, chaînes et programmes*/
         method:'GET',
         headers:{
@@ -51,6 +55,26 @@ const HomePage = ({jwt}) => {
       .finally(() => setIsLoading(false)/*Set la variable isLoading à false*/)
   },[])
 
+     useEffect(() => {
+        fetch(urlBegin,paramsGet)
+        .then(res => res.ok&& res.json())
+        .then(response =>{
+
+            setDataBegin([
+                response['hydra:member'][1],
+                response['hydra:member'][2],
+                response['hydra:member'][3],
+                response['hydra:member'][4],
+                response['hydra:member'][5],
+                response['hydra:member'][6],
+                response['hydra:member'][7],
+            ])    
+            setIsLoadingBegin(false)
+            
+        })
+        .catch( err => alert(err))
+    },[])
+
     function switchTab(value){/*Fonction qui affiche la page selon l'onglet sélectionné*/
         if(value === 0){
             return (
@@ -60,6 +84,8 @@ const HomePage = ({jwt}) => {
                     dataCategories={dataCategories}
                     dataChannels={dataChannels}
                     dataPrograms={dataPrograms}
+                    dataBegin={dataBegin}
+                    isLoadingBegin={isLoadingBegin}
                 />
             )
         }
@@ -74,6 +100,8 @@ const HomePage = ({jwt}) => {
                     dataCategories={dataCategories}
                     dataChannels={dataChannels}
                     dataPrograms={dataPrograms}
+                    dataBegin={dataBegin}
+                    isLoadingBegin={isLoadingBegin}
                 />
             )
         }

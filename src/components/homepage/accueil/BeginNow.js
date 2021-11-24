@@ -3,11 +3,11 @@ import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Redplay from '../../../assets/home/redplay.png';
 import Loader from "../../Loader";
 
-const BeginNow= ({jwt}) => {
+const BeginNow= ({ dataBegin,isLoadingBegin }) => {
 
 
-    const[dataBegin,setDataBegin] = useState([])
-    const[isLoading,setIsLoading] = useState(true)
+    /*const[dataBegin,setDataBegin] = useState([])
+    const[isLoadingBegin,setIsLoadingBegin] = useState(true)
 
     const paramsGetBegin = {
         method:'GET',
@@ -15,7 +15,7 @@ const BeginNow= ({jwt}) => {
             'Authorization': jwt,
             'Content-Type': 'application/json'
         },
-    }
+    } 
     const urlBegin = 'https://api-r.ulteamapp.fr/api/channels?isThematique=1'
 
     useEffect(() => {
@@ -32,11 +32,11 @@ const BeginNow= ({jwt}) => {
                 response['hydra:member'][6],
                 response['hydra:member'][7],
             ])    
-            setIsLoading(false)
+            setIsLoadingBegin(false)
             
         })
         .catch( err => alert(err))
-    },[])
+    },[]) */
 
     const headingTitle = 'votre bien-être en moins de 15mn'.toUpperCase()
 
@@ -47,7 +47,7 @@ const BeginNow= ({jwt}) => {
             <Text style={styles.headingTitle}>{headingTitle}</Text>
 
             {   
-                isLoading?
+                isLoadingBegin?
                     /*Logo de chargement en attente de recevoir les données*/
                     <Loader/>
                 :
@@ -61,7 +61,11 @@ const BeginNow= ({jwt}) => {
                                     source={Redplay}
                                 />
                                 <Text style={styles.title}>{lesson.name}</Text>{/*Titre*/}
-                                <Text style={styles.description}>{lesson.content}</Text>{/*Description*/}
+                                <Text 
+                                    style={styles.description}
+                                    numberOfLines={2}
+                                    ellipsizeMode={'tail'}
+                                >{lesson.content}</Text>{/*Description*/}
 
                             </TouchableOpacity>
                         )
@@ -120,14 +124,17 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'white',
         textAlign:'left',
-        marginLeft:20
+        marginLeft:20,
+        marginTop:'15%',
     },
     description:{
         zIndex:5,
-        width:'85%',
+        height:40,
+        width:'70%',
         color:'white',
         textAlign:'left',
-        marginLeft:20
+        textAlignVertical:'center',
+        marginLeft:20,
     },
     redPlay:{
         position:'absolute',

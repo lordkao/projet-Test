@@ -55,7 +55,7 @@ export default DiscoverHealth;
 
 const styles = StyleSheet.create({
     discoverHealth:{
-        height:500,
+        height:550,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
