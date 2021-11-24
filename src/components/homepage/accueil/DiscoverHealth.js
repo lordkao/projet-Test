@@ -7,9 +7,6 @@ const DiscoverHealth = ({isLoading,dataPrograms}) => {
 
     const headingTitle = 'découvrez nos programmes santé'.toUpperCase()
     
-    !isLoading&& console.log(dataPrograms[0].illustrationUrl)
-
-    
     return(
         <View style={styles.discoverHealth}>
             {
