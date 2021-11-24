@@ -2,20 +2,20 @@ import React,{ useState,useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Home from './accueil/Home';
 import FixedMenu from './fixedMenu/FixedMenu';
+import config from '../../../config'
 
 const HomePage = ({jwt}) => {
 
     const [activeTab,setActiveTab] = useState(0)/*Variable d'état qui définit quel page afficher*/
-    const [isLoading,setIsLoading] = useState(true)/*Variable qui gère l'affichage du composant*/
+    const [isLoading,setIsLoading] = useState(true)/*Si True dataCagories,dataChannels et dataPrograms ne sont pas prêtes sinon la valeur passe à False*/
     const [dataCategories,setDataCategories] = useState([])/*Contient un array des catégories*/
     const [dataChannels,setDataChannels] = useState([])/*Contient un array des chaînes*/
     const [dataPrograms,setDataPrograms] = useState([])/*Contient un array des programmes*/
+    const[dataBegin,setDataBegin] = useState([])/*Contient un array des cours en moins de 15 min*/
+    const[isLoadingBegin,setIsLoadingBegin] = useState(true)/*Si True dataBegin n'est pas prêt sinon la valeur passe à False*/
 
-    const[dataBegin,setDataBegin] = useState([])
-    const[isLoadingBegin,setIsLoadingBegin] = useState(true)
-
-    const url='https://api-r.ulteamapp.fr/api/custom/menu'/*Url des catégories*/
-    const urlBegin = 'https://api-r.ulteamapp.fr/api/channels?isThematique=1'/*Url cours en 15 min */
+    const url= config.API_URL_MENU/*Url des catégories*/
+    const urlBegin = config.API_URL_BEGIN/*Url cours en 15 min */
     const paramsGet = {/*paramètres de requête pour obtenir les categories, chaînes et programmes*/
         method:'GET',
         headers:{
@@ -52,14 +52,13 @@ const HomePage = ({jwt}) => {
         }
       })
       .catch((err) => alert('La requête s\'est mal déroulée' + err))
-      .finally(() => setIsLoading(false)/*Set la variable isLoading à false*/)
+      .finally(() => setIsLoading(false))
   },[])
 
      useEffect(() => {
         fetch(urlBegin,paramsGet)
         .then(res => res.ok&& res.json())
         .then(response =>{
-
             setDataBegin([
                 response['hydra:member'][1],
                 response['hydra:member'][2],
@@ -69,10 +68,9 @@ const HomePage = ({jwt}) => {
                 response['hydra:member'][6],
                 response['hydra:member'][7],
             ])    
-            setIsLoadingBegin(false)
-            
         })
         .catch( err => alert(err))
+        .finally(() => setIsLoadingBegin(false))
     },[])
 
     function switchTab(value){/*Fonction qui affiche la page selon l'onglet sélectionné*/
