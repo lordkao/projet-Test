@@ -12,7 +12,6 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
             }
             else if(currentArray[i]){
                 array.push(currentArray[i])
-                console.log('success'+ i)
             }
         }
         return array
@@ -22,9 +21,6 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
     const channelBienetre = copyData(60,dataChannels[1])
     const channelOrganisation = copyData(60,dataChannels[2])
     const channelSante = copyData(60,dataChannels[3])
-    console.log(channelSante)
-    
-    console.log('longueur du tableau'+channelOrganisation.length)
 
     return(
         isLoading?

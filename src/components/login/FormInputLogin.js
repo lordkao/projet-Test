@@ -16,6 +16,7 @@ const FormInputLogin = ({
             <TextInput 
                 style={styles.input} 
                 placeholder='Identifiant'
+                placeholderTextColor='grey'
                 onChangeText={setUserName}
                 value={userName}
             />
@@ -24,6 +25,7 @@ const FormInputLogin = ({
             <TextInput 
                 style={styles.input} 
                 placeholder='Mot de passe'
+                placeholderTextColor='grey'
                 onChangeText={setPassword}
                 value={password}
                 secureTextEntry={true}
@@ -54,6 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     width:'75%',
     textAlign:'center',
+    color:'black',
     borderTopLeftRadius:5,
     borderTopRightRadius:5,
     borderBottomLeftRadius:5,

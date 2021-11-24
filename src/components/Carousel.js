@@ -22,8 +22,6 @@ const Carousel = ({ data }) => {
     }
 
     useEffect(()=>{/*Gère le scroll du carousel*/
-        console.log('Valeur de currentIndex : '+currentIndex)
-        console.log(length)
         virtualizedList.current.scrollToIndex({
             animated:true,
             index:currentIndex,
@@ -188,6 +186,7 @@ const styles = StyleSheet.create({
     },
     btnFrameText:{
         fontSize:11,
+        color:'black',
         fontWeight:'bold',
         textAlign:'center',
         textAlignVertical:'center',

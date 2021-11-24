@@ -10,7 +10,7 @@ const CarouselIndicators = ({array}) => {
     const length = array.length
 
     useEffect(()=>{/*Scroll à l'index de l'élément choisit*/
-        console.log(currentIndex)/*Affiche dans la console le dernier index enregistré*/
+        /*console.log(currentIndex)Affiche dans la console le dernier index enregistré*/
 
         refFlatlist.current.scrollToIndex({
             animated:true,
