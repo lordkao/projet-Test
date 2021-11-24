@@ -61,7 +61,11 @@ const BeginNow= ({ dataBegin,isLoadingBegin }) => {
                                     source={Redplay}
                                 />
                                 <Text style={styles.title}>{lesson.name}</Text>{/*Titre*/}
-                                <Text style={styles.description}>{lesson.content}</Text>{/*Description*/}
+                                <Text 
+                                    style={styles.description}
+                                    numberOfLines={2}
+                                    ellipsizeMode={'tail'}
+                                >{lesson.content}</Text>{/*Description*/}
 
                             </TouchableOpacity>
                         )
@@ -120,14 +124,17 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'white',
         textAlign:'left',
-        marginLeft:20
+        marginLeft:20,
+        marginTop:'15%',
     },
     description:{
         zIndex:5,
-        width:'85%',
+        height:40,
+        width:'70%',
         color:'white',
         textAlign:'left',
-        marginLeft:20
+        textAlignVertical:'center',
+        marginLeft:20,
     },
     redPlay:{
         position:'absolute',
