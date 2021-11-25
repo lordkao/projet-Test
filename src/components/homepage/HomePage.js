@@ -9,7 +9,7 @@ const HomePage = ({jwt}) => {
 
     function switchTab(value){/*Fonction qui affiche la page selon l'onglet sélectionné*/
         if(value === 0){return(<Home jwt={jwt}/>)}
-        else if(value === 1){return(null)}
+        else if(value === 1){return null}
         else if(value === 2){return(<Home jwt={jwt}/>)}
     }
 
