@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View} from 'react-native'
-import Carousel from '../../Carousel'
+import CarouselDouble from '../../CarouselDouble'
 
 const DiscoverChannels = ({ dataChannels}) => {
 
@@ -29,17 +29,17 @@ const DiscoverChannels = ({ dataChannels}) => {
 
                 <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Sport</Text>
-                    <Carousel data={channelSport}/>
+                    <CarouselDouble data={channelSport}/>
                 </View>
 
                 <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Bien-être</Text>
-                    <Carousel data={channelBienetre}/>
+                    <CarouselDouble data={channelBienetre}/>
                 </View>
 
                 <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Organisation</Text>
-                    <Carousel data={channelOrganisation}/>
+                    <CarouselDouble data={channelOrganisation}/>
                 </View>
 
                {/* <View style={styles.categoryFrame}>
