@@ -4,7 +4,7 @@ import Polygone from '../../../assets/home/polygone.png';
 import News1 from '../../../assets/home/news1.png';
 import News2 from '../../../assets/home/news2.png';
 import News3 from '../../../assets/home/news3.png';
-import CarouselIndicators from "../../CarouselIndicators";
+import CarouselSimple from "../../CarouselSimple";
 
 const News = () => {
     /*Obtenir les dimensions de l'écran*/
@@ -40,7 +40,7 @@ const News = () => {
             </View>
 
             <View style={styles.flatListContainer}>
-                <CarouselIndicators
+                <CarouselSimple
                     array={arrayNews}
                 />
             </View>

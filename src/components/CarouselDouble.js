@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, VirtualizedList, Dimensions, Image, TouchableOp
 import PlusCircle from '../assets/home/plus-circle.png'
 import Left from '../assets/left.png'
 import Right from '../assets/right.png'
-import Indicator from './Indicator'
+import IndicatorCarouselDouble from './IndicatorCarouselDouble'
 
 const Carousel = ({ data }) => {
     const{ width, height } = Dimensions.get('screen')
@@ -69,7 +69,7 @@ const Carousel = ({ data }) => {
 
             <View style={styles.carouselContainer}>
                 {/*Indicateur gauche*/}
-                <Indicator 
+                <IndicatorCarouselDouble 
                     icon={Left}
                     side={true}/*Si true le sens est à gauche sinon à droite*/
                     currentIndex={currentIndex}
@@ -90,7 +90,7 @@ const Carousel = ({ data }) => {
                     scrollEnabled={false}
                 />
                 {/*Indicateur droite*/}
-                <Indicator 
+                <IndicatorCarouselDouble 
                     icon={Right}
                     side={false}/*Si true le sens est à gauche sinon à droite*/
                     currentIndex={currentIndex}
