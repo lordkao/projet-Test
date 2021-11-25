@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View} from 'react-native'
 import Carousel from '../../Carousel'
 
-const DiscoverChannels = ({ isLoading, dataChannels}) => {
+const DiscoverChannels = ({ dataChannels}) => {
 
-    function copyData(iteration,currentArray){/*Fonction qui permet de recopier les données dans un tableau*/
+    const copyData = (iteration,currentArray) =>{/*Fonction qui permet de recopier les données dans un tableau*/
         let array = []
         for(let i = 0 ; i < iteration; i++){
             if(array.length === 10){
@@ -23,11 +23,6 @@ const DiscoverChannels = ({ isLoading, dataChannels}) => {
     const channelSante = copyData(60,dataChannels[3])
 
     return(
-        isLoading?
-            <View>
-                <Text>Chargement en cours...</Text>
-            </View>
-            :
             <View style={styles.discoverChannels}>
 
                 <Text style={styles.headingTitle}>DÉCOUVREZ NOS CHAÎNES</Text>

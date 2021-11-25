@@ -1,5 +1,6 @@
-import React from "react";
+import React,{ useState,useEffect } from "react";
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import config from "../../../../config";
 import BeginNow from "./BeginNow";
 import ButtonsHome from "./ButtonsHome";
 import DiscoverCategories from "./DiscoverCategories";
@@ -8,21 +9,79 @@ import DiscoverHealth from "./DiscoverHealth";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
 
-const Home = ({
-    jwt,
-    isLoading,
-    dataCategories,
-    dataChannels,
-    dataPrograms,
-    dataBegin,
-    isLoadingBegin
-}) => {
+const Home = ({jwt}) => {
+
+    const [isLoading,setIsLoading] = useState(true)/*Si True dataCagories,dataChannels et dataPrograms ne sont pas prêtes sinon la valeur passe à False*/
+    const [dataCategories,setDataCategories] = useState([])/*Contient un array des catégories*/
+    const [dataChannels,setDataChannels] = useState([])/*Contient un array des chaînes*/
+    const [dataPrograms,setDataPrograms] = useState([])/*Contient un array des programmes*/
+    const [dataBegin,setDataBegin] = useState([])/*Contient un array des cours en moins de 15 min*/
+    const [isLoadingBegin,setIsLoadingBegin] = useState(true)/*Si True dataBegin n'est pas prêt sinon la valeur passe à False*/
+
+    const url= config.API_URL_MENU/*Url des catégories*/
+    const urlBegin = config.API_URL_BEGIN/*Url cours en 15 min */
+    const paramsGet = {/*paramètres de requête pour obtenir les categories, chaînes et programmes*/
+        method:'GET',
+        headers:{
+            'Authorization': jwt,
+            'Content-Type' : 'application/json'
+        }
+    }
+
+    const getAll = async () => {/*Envoi d'une requête pour obtenir les categories, chaînes et programmes*/
+        try{
+            const response = await fetch(url,paramsGet)
+            const json = await response.json()
+            setDataCategories([
+                json.categories[3],
+                json.categories[4],
+                json.categories[5],
+                json.categories[6],
+            ])
+            setDataChannels([
+                json.channels[3],
+                json.channels[4],
+                json.channels[5],
+                json.channels[6],
+            ])
+            setDataPrograms([
+                json.programs[106],
+                json.programs[102],
+                json.programs[98],
+            ])
+        }
+        catch{(error) => console.log('La requête s\'est mal déroulée :'+error)}
+        finally{setIsLoading(false)}
+    }
+
+    const getBeginLessons = async () => {
+        try{
+            const response = await fetch(urlBegin,paramsGet)
+            const json = await response.json()
+            setDataBegin([
+                json['hydra:member'][1],
+                json['hydra:member'][2],
+                json['hydra:member'][3],
+                json['hydra:member'][4],
+                json['hydra:member'][5],
+                json['hydra:member'][6],
+                json['hydra:member'][7],
+            ])  
+        }
+        catch{(error) => console.log('La requête s\'est mal déroulée :'+error)}
+        finally{setIsLoadingBegin(false)}
+    }
+
+    useEffect(() => {/*Appel de requête pour obtenir les categories, chaînes et programmes*/
+        getAll()
+    },[])
+
+     useEffect(() => {/*Appel de requête pour obtenir les cours en 15 mins*/
+        getBeginLessons()
+    },[])
+
     return(
-        isLoading && isLoadingBegin?
-            <View style={{flex:1,width:'100%'}}>
-                <Text style={{color:'white',fontSize:28}}>Chargement en cours...</Text>
-            </View>
-            :
+        !isLoading && !isLoadingBegin?
             <ScrollView style={styles.scrollView}>
                 
                 {/*Header de la homePage OK*/}
@@ -39,7 +98,6 @@ const Home = ({
                 <View style={[styles.discoverCategories]}>
                     <DiscoverCategories
                         jwt={jwt}
-                        isLoading={isLoading}
                         dataCategories={dataCategories}
                     />
                 </View>
@@ -48,11 +106,11 @@ const Home = ({
                 <View style={[styles.buttons]}>
                     <ButtonsHome/>
                 </View>
+
                 {/*Section bien-être en moins de 15min OK*/}
                 <View style={[styles.beginNow]}>
                     <BeginNow
                         dataBegin={dataBegin}
-                        isLoadingBegin={isLoadingBegin}
                     />
                 </View>
 
@@ -60,25 +118,34 @@ const Home = ({
                 <View style={[styles.discoverHealth]}>
                     <DiscoverHealth 
                         dataPrograms={dataPrograms}
-                        isLoading={isLoading}
                     />
                 </View>
 
                 {/*Découverte des chaînes*/}
                 <View style={[styles.discoverChannels]}>
                     <DiscoverChannels
-                        isLoading={isLoading}
                         dataChannels={dataChannels}
                     />
                 </View>
 
             </ScrollView>
+            :
+            <View style={styles.loadingPage}>
+                <Text style={{color:'white',fontSize:28}}>Chargement en cours...</Text>
+            </View>
     )
 }
 
 export default Home;
 
 const styles = StyleSheet.create({
+    loadingPage:{
+        flex:1,
+        width:'100%',
+        backgroundColor:'#000629',
+        justifyContent:'center',
+        alignItems:'center'
+    },
     scrollView:{
         backgroundColor:'#000629',
         width:'100%',

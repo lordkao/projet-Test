@@ -41,7 +41,6 @@ const FormButtonsLogin = ({
                 setConnected(true)
                 setShowLogin(false)
                 setShowHomePage(true)
-                alert('Bonne réception du JWT afin de poursuivre votre navigation')
             }
             else{
                 alert('Mauvaise informations saisies !!')

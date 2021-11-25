@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Loader from "../../Loader";
 
-const DiscoverCategories = ({isLoading,dataCategories}) => {
+const DiscoverCategories = ({dataCategories}) => {
 
 
     return(
@@ -13,30 +13,26 @@ const DiscoverCategories = ({isLoading,dataCategories}) => {
 
             <View style={styles.contentContainer}>
                 {
-                    isLoading?
-                            /*Logo de chargement en attente de recevoir les données*/
-                            <Loader/>
-                        :
-                            /*Boucle dans dataCategories pour créer un bouton de chaque categorie*/
-                            dataCategories.map((category,index)=>{
-                                return(
-                                    <View key={category.id+'-'+index} style={styles.discoverFrame}>
-                                        <TouchableOpacity
-                                            style={styles.btnCategory}
-                                            activeOpacity={0.7}
-                                        >
-                                            <Image 
-                                                resizeMode='cover'
-                                                source={{uri:category.illustrationUrl}} 
-                                                style={styles.imageContainer}
-                                            />
-                                            <Text style={styles.title}>
-                                                {category.name}
-                                            </Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                )
-                            })
+                    /*Boucle dans dataCategories pour créer un bouton de chaque categorie*/
+                    dataCategories.map((category,index)=>{
+                        return(
+                            <View key={category.id+'-'+index} style={styles.discoverFrame}>
+                                <TouchableOpacity
+                                    style={styles.btnCategory}
+                                    activeOpacity={0.7}
+                                >
+                                    <Image 
+                                        resizeMode='cover'
+                                        source={{uri:category.illustrationUrl}} 
+                                        style={styles.imageContainer}
+                                    />
+                                    <Text style={styles.title}>
+                                        {category.name}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    })
                 }
             </View>
         </View>
