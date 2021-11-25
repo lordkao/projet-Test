@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     title:{
         zIndex:5,
         fontWeight:'900',
-        fontSize:26,
+        fontSize:20,
         letterSpacing:1,
         color:'white',
     },

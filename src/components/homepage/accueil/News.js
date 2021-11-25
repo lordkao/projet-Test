@@ -7,9 +7,6 @@ import News3 from '../../../assets/home/news3.png';
 import CarouselSimple from "../../CarouselSimple";
 
 const News = () => {
-    /*Obtenir les dimensions de l'écran*/
-    /*const{ width,height } = Dimensions.get('screen')*/
-
 
     const newsTitle = 'NOUVEAUTÉS'
     const arrayNews = [
@@ -19,15 +16,8 @@ const News = () => {
         { id: 4,image: News1 },
         { id: 5,image: News2 },
         { id: 6,image: News3 },
-        { id: 11,image: News1 },
-        { id: 21,image: News2 },
-        { id: 31,image: News3 },
-        { id: 41,image: News1 },
-        { id: 51,image: News2 },
-        { id: 61,image: News3 },
     ]
     
-
     return(
         <View style={styles.newsContainer}>
 
