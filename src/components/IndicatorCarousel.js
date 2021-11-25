@@ -1,7 +1,15 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, Image } from 'react-native'
 
-const IndicatorCarousel = ({ icon, side, fonction }) => {
+const IndicatorCarousel = ({ icon, side, currentIndex, setCurrentIndex, length }) => {
+
+    const prev = () => {/*Soustrait 1 à l'index*/
+        setCurrentIndex(currentIndex?currentIndex-1: length -1)
+    }
+    const next = () => {/*Ajoute 1 à l'index*/
+        setCurrentIndex(currentIndex === length -1? 0 : currentIndex+1)
+    }
+
     return (
         <TouchableOpacity 
             style={[
@@ -9,7 +17,7 @@ const IndicatorCarousel = ({ icon, side, fonction }) => {
                 side?/*Si True renvoi le style pour un sens à gauche sinon à droite*/
                     styles.left : styles.right
             ]}
-            onPress={() => fonction()}
+            onPress={() => side? prev() : next()}
         >
             <Image 
                 source={icon}

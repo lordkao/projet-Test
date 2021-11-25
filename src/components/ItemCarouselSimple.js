@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 
-const ItemCarousel = ({item ,index, currentIndex}) => {
+const ItemCarouselSimple = ({item ,index, currentIndex}) => {
     return (
         <View style={styles.styleContainer}>
             <TouchableOpacity 
@@ -23,7 +23,7 @@ const ItemCarousel = ({item ,index, currentIndex}) => {
     )
 }
 
-export default ItemCarousel
+export default ItemCarouselSimple
 
 const styles = StyleSheet.create({
     styleContainer: {

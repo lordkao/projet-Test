@@ -3,7 +3,7 @@ import { View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-nativ
 import Left from '../assets/left.png';
 import Right from '../assets/right.png';
 import IndicatorCarousel from "./IndicatorCarousel";
-import ItemCarousel from "./ItemCarousel";
+import ItemCarouselSimple from "./ItemCarouselSimple";
 
 const CarouselIndicators = ({array}) => {
 
@@ -23,15 +23,8 @@ const CarouselIndicators = ({array}) => {
 
     },[currentIndex])
 
-    const prev = () => {/*Soustrait 1 à l'index*/
-        setCurrentIndex(currentIndex?currentIndex-1: length -1)
-    }
-    const next = () => {/*Ajoute 1 à l'index*/
-        setCurrentIndex(currentIndex === length -1? 0 : currentIndex+1)
-    }
-
     const renderItem = (item,index) =>{
-        return <ItemCarousel item={item} index={index} currentIndex={currentIndex} />
+        return <ItemCarouselSimple item={item} index={index} currentIndex={currentIndex} />
     }
 
     return(
@@ -49,12 +42,16 @@ const CarouselIndicators = ({array}) => {
                 <IndicatorCarousel 
                     icon={Left} 
                     side={true}
-                    fonction={prev}
+                    currentIndex={currentIndex}
+                    setCurrentIndex={setCurrentIndex}
+                    length={length}
                 />
                 <IndicatorCarousel 
                     icon={Right} 
                     side={false}
-                    fonction={next}
+                    currentIndex={currentIndex}
+                    setCurrentIndex={setCurrentIndex}
+                    length={length}
                 />
             </View>
     )
