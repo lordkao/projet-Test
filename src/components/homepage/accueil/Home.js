@@ -84,17 +84,17 @@ const Home = ({jwt}) => {
         !isLoading && !isLoadingBegin?
             <ScrollView style={styles.scrollView}>
                 
-                {/*Header de la homePage OK*/}
+                {/*Header de la homePage */}
                 <View style={[styles.headerHomePage]}>
                     <HeaderHome/>
                 </View>
 
-                {/*Nouveautés de la homePage OK*/}
+                {/*Nouveautés de la homePage */}
                 <View style={[styles.news]}>
                     <News/>
                 </View>
 
-                {/*Découverte des chaînes de la homePage OK*/}
+                {/*Découverte des chaînes de la homePage */}
                 <View style={[styles.discoverCategories]}>
                     <DiscoverCategories
                         jwt={jwt}
@@ -102,12 +102,12 @@ const Home = ({jwt}) => {
                     />
                 </View>
 
-                {/*Boutons favoris et reprendre OK*/}
+                {/*Boutons favoris et reprendre */}
                 <View style={[styles.buttons]}>
                     <ButtonsHome/>
                 </View>
 
-                {/*Section bien-être en moins de 15min OK*/}
+                {/*Section bien-être en moins de 15min */}
                 <View style={[styles.beginNow]}>
                     <BeginNow
                         dataBegin={dataBegin}
@@ -131,7 +131,7 @@ const Home = ({jwt}) => {
             </ScrollView>
             :
             <View style={styles.loadingPage}>
-                <Text style={{color:'white',fontSize:28}}>Chargement en cours...</Text>
+                <Text style={styles.textWait}>Chargement en cours...</Text>
             </View>
     )
 }
@@ -187,5 +187,9 @@ const styles = StyleSheet.create({
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
+    },
+    textWait:{
+        color:'white',
+        fontSize:24,
     }
 })

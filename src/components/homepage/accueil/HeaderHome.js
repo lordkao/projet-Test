@@ -2,41 +2,18 @@ import React from "react";
 import { View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import ProgramsImage from '../../../assets/home/programs.png';
 import ChannelsImage from '../../../assets/home/channels.png';
-import RedPlayIcon from '../../../assets/home/redplay.png';
+import HeaderButton from "./HeaderButton";
 
 const HeaderHome = () => {
     return(
         <View style={styles.headerHome}>
+
             {/*Bouton 'Nos Programmes'*/}
-            <TouchableOpacity 
-            style={styles.button}
-            activeOpacity={0.7}
-            >
-                <ImageBackground 
-                    style={styles.frameImage} 
-                    source={ProgramsImage}
-                />
-                <Image 
-                    style={styles.redPlay} 
-                    source={RedPlayIcon}
-                />
-            </TouchableOpacity>
+            <HeaderButton background={ProgramsImage}/>
 
             {/*Bouton 'Nos Chaînes'*/}
-            <TouchableOpacity 
-            style={styles.button}
-            activeOpacity={0.7}
-            >
-                <ImageBackground 
-                    style={styles.frameImage} 
-                    source={ChannelsImage}
-                />
-                <Image 
-                    style={styles.redPlay} 
-                    source={RedPlayIcon}
-                />
-            </TouchableOpacity>
-
+            <HeaderButton background={ChannelsImage}/>
+            
         </View>
     )
 }
@@ -48,25 +25,5 @@ const styles = StyleSheet.create({
         flex:1,
         width:'100%',
         flexDirection:'row',
-    },
-    button:{
-        position:'relative',
-        flex:1,
-        margin:5,
-        borderRadius:20,
-        backgroundColor:'white'
-    },
-    frameImage:{
-        flex:1,
-        backgroundColor:'black',
-        borderRadius:20,
-        overflow:'hidden'
-    },
-    redPlay:{
-        position:'absolute',
-        zIndex:5,
-        top:'85%',
-        height:70,
-        width:70,
     },
 })

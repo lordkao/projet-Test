@@ -8,23 +8,9 @@ const HomePage = ({jwt}) => {
     const [activeTab,setActiveTab] = useState(0)/*Variable d'état qui définit quel page afficher*/
 
     function switchTab(value){/*Fonction qui affiche la page selon l'onglet sélectionné*/
-        if(value === 0){
-            return (
-                <Home 
-                    jwt={jwt}
-                />
-            )
-        }
-        else if(value === 1){
-            return null
-        }
-        else if(value === 2){
-            return (
-                <Home 
-                    jwt={jwt}
-                />
-            )
-        }
+        if(value === 0){return(<Home jwt={jwt}/>)}
+        else if(value === 1){return null}
+        else if(value === 2){return(<Home jwt={jwt}/>)}
     }
 
     return(
@@ -32,10 +18,7 @@ const HomePage = ({jwt}) => {
 
             {/*Menu de navigation*/}
             <View style={[styles.fixedMenu]}>
-                <FixedMenu
-                    activeTab={activeTab}
-                    setActiveTab={setActiveTab}
-                />
+                <FixedMenu activeTab={activeTab} setActiveTab={setActiveTab}/>
             </View>
             
             {/*Contenu principale affiché*/
