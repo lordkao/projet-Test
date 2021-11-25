@@ -3,40 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Redplay from '../../../assets/home/redplay.png';
 import Loader from "../../Loader";
 
-const BeginNow= ({ dataBegin,isLoadingBegin }) => {
-
-
-    /*const[dataBegin,setDataBegin] = useState([])
-    const[isLoadingBegin,setIsLoadingBegin] = useState(true)
-
-    const paramsGetBegin = {
-        method:'GET',
-        headers:{
-            'Authorization': jwt,
-            'Content-Type': 'application/json'
-        },
-    } 
-    const urlBegin = 'https://api-r.ulteamapp.fr/api/channels?isThematique=1'
-
-    useEffect(() => {
-        fetch(urlBegin,paramsGetBegin)
-        .then(res => res.ok&& res.json())
-        .then(response =>{
-
-            setDataBegin([
-                response['hydra:member'][1],
-                response['hydra:member'][2],
-                response['hydra:member'][3],
-                response['hydra:member'][4],
-                response['hydra:member'][5],
-                response['hydra:member'][6],
-                response['hydra:member'][7],
-            ])    
-            setIsLoadingBegin(false)
-            
-        })
-        .catch( err => alert(err))
-    },[]) */
+const BeginNow= ({ dataBegin }) => {
 
     const headingTitle = 'votre bien-être en moins de 15mn'.toUpperCase()
 
@@ -47,27 +14,23 @@ const BeginNow= ({ dataBegin,isLoadingBegin }) => {
             <Text style={styles.headingTitle}>{headingTitle}</Text>
 
             {   
-                isLoadingBegin?
-                    /*Logo de chargement en attente de recevoir les données*/
-                    <Loader/>
-                :
-                    /*Boucle dans dataBegin pour créer un boutton à chaque itération*/
-                    dataBegin.map( (lesson,index)=>{
-                        return (
-                            <TouchableOpacity key={lesson.name+index} activeOpacity={0.7} style={styles.btnBegin}>
-                                <Image style={styles.imageBackground} source={{uri:lesson.image.contentUrl}}/>
-                                <Image 
-                                    style={styles.redPlay}
-                                    source={Redplay}
-                                />
-                                <Text style={styles.title}>{lesson.name}</Text>{/*Titre*/}
-                                <Text 
-                                    style={styles.description}
-                                    numberOfLines={2}
-                                    ellipsizeMode={'tail'}
-                                >{lesson.content}</Text>{/*Description*/}
+                /*Boucle dans dataBegin pour créer un boutton à chaque itération*/
+                dataBegin.map( (lesson,index)=>{
+                    return (
+                        <TouchableOpacity key={lesson.name+index} activeOpacity={0.7} style={styles.btnBegin}>
+                            <Image style={styles.imageBackground} source={{uri:lesson.image.contentUrl}}/>
+                            <Image 
+                                style={styles.redPlay}
+                                source={Redplay}
+                            />
+                            <Text style={styles.title}>{lesson.name}</Text>{/*Titre*/}
+                            <Text 
+                                style={styles.description}
+                                numberOfLines={2}
+                                ellipsizeMode={'tail'}
+                            >{lesson.content}</Text>{/*Description*/}
 
-                            </TouchableOpacity>
+                        </TouchableOpacity>
                         )
                     })
             }

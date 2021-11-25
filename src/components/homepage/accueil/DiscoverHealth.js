@@ -3,46 +3,42 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Frameprogram from "../../FrameProgram";
 import Loader from "../../Loader";
 
-const DiscoverHealth = ({isLoading,dataPrograms}) => {
+const DiscoverHealth = ({dataPrograms}) => {
 
     const headingTitle = 'découvrez nos programmes santé'.toUpperCase()
     
     return(
         <View style={styles.discoverHealth}>
             {
-                isLoading?
-                    /*Logo de chargement en attente de recevoir les données*/
-                    <Loader/>
-                :
-                    <View style={styles.discoverHealthContainer}>
+                <View style={styles.discoverHealthContainer}>
 
-                        {/*Titre programme santé*/}
-                        <Text style={styles.headingTitleHealth}>{headingTitle}</Text>
-                        <View style={styles.frameLessons}>
+                    {/*Titre programme santé*/}
+                    <Text style={styles.headingTitleHealth}>{headingTitle}</Text>
+                    <View style={styles.frameLessons}>
 
-                            {/*Cadre de gauche*/}
-                            <View style={styles.frameContainer}>
-                                <Frameprogram title={dataPrograms[0].name} urlImage={dataPrograms[0].illustrationUrl}/>
-                            </View>
-
-                            {/*Cadre de droite*/}
-                            <View style={[styles.frameContainer,{justifyContent:'space-between'}]}>
-                                <View style={styles.frameLeft}>
-                                    <Frameprogram title={dataPrograms[1].name} urlImage={dataPrograms[1].illustrationUrl}/>
-                                </View>
-                                <View style={styles.frameLeft}>
-                                    <Frameprogram title={dataPrograms[2].name} urlImage={dataPrograms[2].illustrationUrl}/>
-                                </View>
-                            </View>
+                        {/*Cadre de gauche*/}
+                        <View style={styles.frameContainer}>
+                            <Frameprogram title={dataPrograms[0].name} urlImage={dataPrograms[0].illustrationUrl}/>
                         </View>
-                        
-                        {/*Bouton qui affiche tous les programmes*/}
-                        <View style={styles.btnAllProgramsContainer}>
-                            <TouchableOpacity activeOpacity={0.7} style={styles.btnAllPrograms}>
-                                <Text style={styles.btnContent}>Voir tous les programmes</Text>
-                            </TouchableOpacity>
+
+                        {/*Cadre de droite*/}
+                        <View style={[styles.frameContainer,{justifyContent:'space-between'}]}>
+                            <View style={styles.frameLeft}>
+                                <Frameprogram title={dataPrograms[1].name} urlImage={dataPrograms[1].illustrationUrl}/>
+                            </View>
+                            <View style={styles.frameLeft}>
+                                <Frameprogram title={dataPrograms[2].name} urlImage={dataPrograms[2].illustrationUrl}/>
+                            </View>
                         </View>
                     </View>
+                    
+                    {/*Bouton qui affiche tous les programmes*/}
+                    <View style={styles.btnAllProgramsContainer}>
+                        <TouchableOpacity activeOpacity={0.7} style={styles.btnAllPrograms}>
+                            <Text style={styles.btnContent}>Voir tous les programmes</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             }
         </View>
     )
