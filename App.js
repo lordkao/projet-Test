@@ -13,24 +13,6 @@ const UlteamProject = () => {
   const [connected,setConnected] = useState(false)/*Variable d'état qui définit l'état de connexion*/
   const [jsonWebToken,setJsonWebToken] = useState('')/*Variable d'état qui va contenir la clé JWT*/
 
-  /*Tous les useEffect pour vérification*/
-  useEffect(() => {/*Indique la valeur Booléenne de "connected" à chaque changement de celui-ci*/
-    console.log('connected Value ==> '+connected)
-  },[connected])
-
-  useEffect(() => {/*Envoi dans la console le JWT reçu à chaque setting de "responseRequest"*/
-    console.log('JWT ==> '+jsonWebToken)
-  },[jsonWebToken])
-
-  useEffect(() => {/*Envoi dans la console l'identifiant*/
-    console.log('Voici le username renseigné par l\'utilisateur : '+userName)
-  },[userName])
-
-  useEffect(() => {/*Envoi dans la console le password renseigné*/
-      console.log('Voici le mot de passe renseigné : '+password)
-  },[password])
-
-
   return (
     <View style={styles.container}>
       {/*Bar de statut du smartphone*/}
