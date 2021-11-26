@@ -13,9 +13,6 @@ const News = () => {
         { id: 1,image: News1 },
         { id: 2,image: News2 },
         { id: 3,image: News3 },
-        { id: 4,image: News1 },
-        { id: 5,image: News2 },
-        { id: 6,image: News3 },
     ]
     
     return(
