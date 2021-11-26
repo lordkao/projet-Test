@@ -1,12 +1,13 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import FastImage from "react-native-fast-image";
 
 const Frameprogram = ({title,urlImage}) =>{
     return(
         <View style={styles.container}>
-            <Image 
+            <FastImage 
                 style={styles.backgroundImageFrame} 
-                source={{uri:urlImage}}
+                source={{uri:urlImage,priority: FastImage.priority.high}}
             />
             {/*Titre du programme*/}
             <Text style={styles.lessonTitle}>

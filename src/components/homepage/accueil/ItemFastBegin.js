@@ -1,6 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, Image, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import Redplay from '../../../assets/home/redplay.png';
+import FastImage from 'react-native-fast-image';
 
 const ItemFastBegin = ({ array, index}) => {
 
@@ -10,9 +11,9 @@ const ItemFastBegin = ({ array, index}) => {
             activeOpacity={0.7} 
             style={styles.btnBegin}
         >
-            <Image 
+            <FastImage 
                 style={styles.imageBackground} 
-                source={{uri:array.image.contentUrl}}
+                source={{uri:array.image.contentUrl,priority:FastImage.priority.high}}
             />
             <Image 
                 style={styles.redPlay}

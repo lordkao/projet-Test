@@ -1,14 +1,21 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import PlusCircle from '../assets/home/plus-circle.png'
+import FastImage from 'react-native-fast-image'
 
 const ItemCarouselDouble = ({ name, imageUrl, numberVideos , sizeStyle }) => {
     return (
         <View style={styles.frameContainer}>
             <View style={sizeStyle}>
                 <View style={styles.frameContent}>
-                    
-                    <Image source={{uri:imageUrl}} style={styles.imageBackground}/>{/*Image de fond*/}
+                    <FastImage
+                        style={styles.imageBackground}
+                        source={{
+                            uri: imageUrl,
+                            priority: FastImage.priority.high,
+                        }}
+                        resizeMode={FastImage.resizeMode.cover}
+                    />
                     <Text style={styles.numberVideos}>{numberVideos} vidéos</Text>{/*Nombre de vidéos du thème de la catégorie*/}
                     <Text style={styles.frameTitle}>{name}</Text>{/*Titre du thème de la catégorie*/}
 

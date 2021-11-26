@@ -1,7 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Frameprogram from "../../FrameProgram";
-import Loader from "../../Loader";
 
 const DiscoverHealth = ({dataPrograms}) => {
 
