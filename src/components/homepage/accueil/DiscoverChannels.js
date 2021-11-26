@@ -27,12 +27,12 @@ const DiscoverChannels = ({ dataChannels}) => {
 
                 <Text style={styles.headingTitle}>DÉCOUVREZ NOS CHAÎNES</Text>
 
-                {/*<View style={styles.categoryFrame}>
+                <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Sport</Text>
                     <CarouselDouble data={channelSport}/>
                 </View>
 
-                <View style={styles.categoryFrame}>
+              {/*  <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Bien-être</Text>
                     <CarouselDouble data={channelBienetre}/>
                 </View>

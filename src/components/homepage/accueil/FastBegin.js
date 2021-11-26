@@ -16,7 +16,7 @@ const BeginNow= ({ dataBegin }) => {
                 /*Boucle dans dataBegin pour créer un boutton à chaque itération*/
                 dataBegin.map( (lesson,index)=>{
                     return (
-                        <ItemFastBegin array={lesson} index={index}/>
+                        <ItemFastBegin key={'begin-'+index} array={lesson} index={index}/>
                     )
                 })
             }
