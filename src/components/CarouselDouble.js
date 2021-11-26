@@ -37,7 +37,7 @@ const Carousel = ({ data }) => {
         <ItemCarouselDouble 
             name={item.name} 
             imageUrl={item.imageUrl} 
-            numberVideos={item.numberVideos} 
+            numberVideos={item.activeVideoCount} 
             sizeStyle={sizeStyle}
         />
     )
