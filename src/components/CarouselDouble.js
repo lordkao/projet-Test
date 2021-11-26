@@ -63,6 +63,7 @@ const Carousel = ({ data }) => {
                     keyExtractor={(item) => item.id}
                     pagingEnabled={false}
                     scrollEnabled={false}
+                    initialNumToRender={6}
                 />
 
                 {/*Indicateur droite*/}
