@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { StyleSheet, Text, View, VirtualizedList, Dimensions, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, VirtualizedList, Dimensions, FlatList } from 'react-native'
 import Left from '../assets/left.png'
 import Right from '../assets/right.png'
 import IndicatorCarouselDouble from './IndicatorCarouselDouble'
@@ -13,7 +13,7 @@ const Carousel = ({ data }) => {
     const[currentIndex,setCurrentIndex] = useState(0)
     const imageWidth = (width-40)*0.5/*Calcul la largeur selon la taille de l'écran*/
     const imageHeight = imageWidth*1/*Calcul la heuteur selon la taille de l'écran*/
-    const virtualizedList = useRef()/*Copy de VirtualisedList afin de faire ressortir ses fonctionnalités */
+    const reflatlist = useRef()/*Copy de VirtualisedList afin de faire ressortir ses fonctionnalités */
     const length = data.length/*Longueur du tableau data*/
     
     const sizeStyle = {
@@ -25,24 +25,13 @@ const Carousel = ({ data }) => {
     }
 
     useEffect(()=>{/*Gère le scroll du carousel*/
-        virtualizedList.current.scrollToIndex({
+        reflatlist.current.scrollToIndex({
             animated:true,
             index:currentIndex,
             viewOffset:0,
             viewPosition:0
         })
     },[currentIndex])
-
-    const getItem = (data,index) => ({/*Retourne un objet créé à l'aide de la valeur de data et de son index*/
-        id: 'id: '+index,
-        name: data[index].name,
-        key: data[index].name + index,
-        imageUrl: data[index].imageUrl,
-        category: data[index].categoryName,
-        numberVideos: data[index].activeVideoCount
-    })  
-
-    const getItemCount = (data) => data.length /*Retourne le nombre d'items à créer*/
 
     const renderItem = ({item}) => (
         <ItemCarouselDouble 
@@ -53,7 +42,6 @@ const Carousel = ({ data }) => {
         />
     )
         
-
     return (
         <View style={styles.mainContainer}>
 
@@ -67,18 +55,16 @@ const Carousel = ({ data }) => {
                     dataLength={length}
                 />
 
-                <VirtualizedList
-                    ref={virtualizedList}
-                    initialNumToRender={10}
+                <FlatList
+                    ref={reflatlist}
                     data={data}
-                    getItem={getItem}
-                    getItemCount={getItemCount}
                     renderItem={renderItem}
                     horizontal
-                    keyExtractor={(item) => item.key}
+                    keyExtractor={(item) => item.id}
                     pagingEnabled={false}
                     scrollEnabled={false}
                 />
+
                 {/*Indicateur droite*/}
                 <IndicatorCarouselDouble 
                     icon={Right}
