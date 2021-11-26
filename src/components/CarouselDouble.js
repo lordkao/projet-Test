@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { StyleSheet, View, VirtualizedList, Dimensions, FlatList } from 'react-native'
+import { StyleSheet, View, Dimensions, FlatList } from 'react-native'
 import Left from '../assets/left.png'
 import Right from '../assets/right.png'
 import IndicatorCarouselDouble from './IndicatorCarouselDouble'
@@ -63,6 +63,7 @@ const Carousel = ({ data }) => {
                     keyExtractor={(item) => item.id}
                     pagingEnabled={false}
                     scrollEnabled={false}
+                    initialNumToRender={6}
                 />
 
                 {/*Indicateur droite*/}
