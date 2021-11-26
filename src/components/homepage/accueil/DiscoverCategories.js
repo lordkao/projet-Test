@@ -1,7 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Loader from "../../Loader";
-
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import FastImage from "react-native-fast-image";
 const DiscoverCategories = ({dataCategories}) => {
 
 
@@ -21,9 +20,9 @@ const DiscoverCategories = ({dataCategories}) => {
                                     style={styles.btnCategory}
                                     activeOpacity={0.7}
                                 >
-                                    <Image 
+                                    <FastImage 
                                         resizeMode='cover'
-                                        source={{uri:category.illustrationUrl}} 
+                                        source={{uri:category.illustrationUrl,priority:FastImage.priority.high}} 
                                         style={styles.imageContainer}
                                     />
                                     <Text style={styles.title}>
