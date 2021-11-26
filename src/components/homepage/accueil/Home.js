@@ -1,11 +1,11 @@
 import React,{ useState,useEffect } from "react";
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import config from "../../../../config";
-import BeginNow from "./BeginNow";
 import ButtonsHome from "./ButtonsHome";
 import DiscoverCategories from "./DiscoverCategories";
 import DiscoverChannels from "./DiscoverChannels";
 import DiscoverHealth from "./DiscoverHealth";
+import FastBegin from "./FastBegin";
 import HeaderHome from "./HeaderHome";
 import News from "./News";
 
@@ -82,53 +82,55 @@ const Home = ({jwt}) => {
 
     return(
         !isLoading && !isLoadingBegin?
-            <ScrollView style={styles.scrollView}>
+            <View style={{flex:1,width:'100%'}}>
+                <ScrollView style={styles.scrollView}>
                 
-                {/*Header de la homePage */}
-                <View style={[styles.headerHomePage]}>
-                    <HeaderHome/>
-                </View>
+                    {/*Header de la homePage */}
+                    <View style={[styles.headerHomePage]}>
+                        <HeaderHome/>
+                    </View>
 
-                {/*Nouveautés de la homePage */}
-                <View style={[styles.news]}>
-                    <News/>
-                </View>
+                    {/*Nouveautés de la homePage */}
+                    <View style={[styles.news]}>
+                        <News/>
+                    </View>
 
-                {/*Découverte des chaînes de la homePage */}
-                <View style={[styles.discoverCategories]}>
-                    <DiscoverCategories
-                        jwt={jwt}
-                        dataCategories={dataCategories}
-                    />
-                </View>
+                    {/*Découverte des chaînes de la homePage */}
+                    <View style={[styles.discoverCategories]}>
+                        <DiscoverCategories
+                            jwt={jwt}
+                            dataCategories={dataCategories}
+                        />
+                    </View>
 
-                {/*Boutons favoris et reprendre */}
-                <View style={[styles.buttons]}>
-                    <ButtonsHome/>
-                </View>
+                    {/*Boutons favoris et reprendre */}
+                    <View style={[styles.buttons]}>
+                        <ButtonsHome/>
+                    </View>
 
-                {/*Section bien-être en moins de 15min */}
-                <View style={[styles.beginNow]}>
-                    <BeginNow
-                        dataBegin={dataBegin}
-                    />
-                </View>
+                    {/*Section bien-être en moins de 15min */}
+                    <View style={[styles.beginNow]}>
+                        <FastBegin
+                            dataBegin={dataBegin}
+                        />
+                    </View>
 
-                {/*Découverte du programme santé*/}
-                <View style={[styles.discoverHealth]}>
-                    <DiscoverHealth 
-                        dataPrograms={dataPrograms}
-                    />
-                </View>
+                    {/*Découverte du programme santé*/}
+                    <View style={[styles.discoverHealth]}>
+                        <DiscoverHealth 
+                            dataPrograms={dataPrograms}
+                        />
+                    </View>
 
-                {/*Découverte des chaînes*/}
-                <View style={[styles.discoverChannels]}>
-                    <DiscoverChannels
-                        dataChannels={dataChannels}
-                    />
+                    {/*Découverte des chaînes*/}
+                    <View style={[styles.discoverChannels]}>
+                        <DiscoverChannels
+                            dataChannels={dataChannels}
+                        />
                 </View>
 
             </ScrollView>
+            </View>
             :
             <View style={styles.loadingPage}>
                 <Text style={styles.textWait}>Chargement en cours...</Text>
@@ -174,6 +176,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     beginNow:{
+        paddingHorizontal:10,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',

@@ -20,14 +20,14 @@ const DiscoverChannels = ({ dataChannels}) => {
     const channelSport = copyData(60,dataChannels[0])
     const channelBienetre = copyData(60,dataChannels[1])
     const channelOrganisation = copyData(60,dataChannels[2])
-    const channelSante = copyData(60,dataChannels[3])
+    const channelSante = copyData(50,dataChannels[3])
 
     return(
             <View style={styles.discoverChannels}>
 
                 <Text style={styles.headingTitle}>DÉCOUVREZ NOS CHAÎNES</Text>
 
-                {/*<View style={styles.categoryFrame}>
+                <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Sport</Text>
                     <CarouselDouble data={channelSport}/>
                 </View>
@@ -42,10 +42,10 @@ const DiscoverChannels = ({ dataChannels}) => {
                     <CarouselDouble data={channelOrganisation}/>
                 </View>
 
-                <View style={styles.categoryFrame}>
+               {/* <View style={styles.categoryFrame}>
                     <Text style={styles.channelName}>Santé</Text>
-                    <Carousel data={channelSante}/>
-                </View>*/}
+                    <CarouselDouble data={channelSante}/>
+                </View> */}
             
             </View>
     )
